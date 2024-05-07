@@ -15,7 +15,6 @@
 		4FE1747A2BE9BB33006C950C /* CineHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE174792BE9BB33006C950C /* CineHubUITests.swift */; };
 		4FE1747C2BE9BB33006C950C /* CineHubUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1747B2BE9BB33006C950C /* CineHubUITestsLaunchTests.swift */; };
 		4FE1748A2BE9BCB3006C950C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE174892BE9BCB3006C950C /* APIClient.swift */; };
-		4FE1748C2BE9BD49006C950C /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1748B2BE9BD49006C950C /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +46,6 @@
 		4FE174792BE9BB33006C950C /* CineHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineHubUITests.swift; sourceTree = "<group>"; };
 		4FE1747B2BE9BB33006C950C /* CineHubUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineHubUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4FE174892BE9BCB3006C950C /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		4FE1748B2BE9BD49006C950C /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				4FE174892BE9BCB3006C950C /* APIClient.swift */,
-				4FE1748B2BE9BD49006C950C /* Secrets.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -272,7 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FE174612BE9BB32006C950C /* ContentView.swift in Sources */,
-				4FE1748C2BE9BD49006C950C /* Secrets.swift in Sources */,
 				4FE1745F2BE9BB32006C950C /* CineHubApp.swift in Sources */,
 				4FE1748A2BE9BCB3006C950C /* APIClient.swift in Sources */,
 			);
