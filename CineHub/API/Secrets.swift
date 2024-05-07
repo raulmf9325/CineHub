@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct Secrets {
+    static let apiKey = "68ef98a4affa652b311088086fb922db"
+}
