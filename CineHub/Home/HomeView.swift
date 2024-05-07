@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 @MainActor
 class HomeModel: ObservableObject {
@@ -36,9 +37,33 @@ struct HomeView: View {
     var body: some View {
         List {
             ForEach(model.movies) { movie in
-                Text(movie.title ?? "Unknown title")
+                if let title = movie.title, let posterPath = movie.poster_path {
+                    MovieRow(title: title,
+                             posterPath: posterPath)
+                }
             }
         }
+    }
+}
+
+struct MovieRow: View {
+    let title: String
+    let posterPath: String
+    
+    var body: some View {
+        HStack {
+            posterImage
+            Text(title)
+        }
+    }
+    
+    var posterImage: some View {
+        WebImage(url: URL(string: "https://image.tmdb.org/t/p/w300/\(posterPath)"))
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .scaledToFill()
+            .frame(width: 100, height: 120)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
