@@ -29,6 +29,16 @@ class HomeModel: ObservableObject {
             }
         }
     }
+    
+    func refresh() {
+        Task { @MainActor in
+            do {
+                self.movies = try await apiClient.getNowPlaying(1).shuffled()
+            } catch {
+                print("Error getting now playing: \(error)")
+            }
+        }
+    }
 }
 
 struct HomeView: View {
@@ -41,19 +51,27 @@ struct HomeView: View {
     ]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 30) {
-                ForEach(model.movies) { movie in
-                    if let title = movie.title, let posterPath = movie.poster_path {
-                        MovieRow(title: title,
-                                 posterPath: posterPath)
+        ZStack {
+            Color.black.ignoresSafeArea(.all)
+            
+            VStack {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 30) {
+                        ForEach(model.movies) { movie in
+                            if let title = movie.title, let posterPath = movie.poster_path {
+                                MovieRow(title: title,
+                                         posterPath: posterPath)
+                            }
+                        }
                     }
+                    .padding(.horizontal)
                 }
-                
+                .refreshable {
+                    model.refresh()
+                }
+                .padding(.top)
             }
-            .padding(.horizontal)
         }
-        .background(Color.black)
     }
 }
 
