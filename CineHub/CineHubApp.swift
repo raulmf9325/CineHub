@@ -11,7 +11,7 @@ import SwiftUI
 struct CineHubApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView(model: .init(apiClient: .live))
         }
     }
 }
