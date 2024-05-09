@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F12B9EE2BED75C4009B5EED /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 4F12B9ED2BED75C4009B5EED /* IdentifiedCollections */; };
 		4F6BB40A2BEAD68D00F8006C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6BB4092BEAD68D00F8006C /* Movie.swift */; };
 		4F6BB40D2BEAD98300F8006C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6BB40C2BEAD98300F8006C /* HomeView.swift */; };
 		4F6BB4102BEADE9600F8006C /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F6BB40F2BEADE9600F8006C /* SDWebImageSwiftUI */; };
+		4F6BB4162BEB200B00F8006C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6BB4152BEB200B00F8006C /* HomeModel.swift */; };
+		4F6BB4192BEB202D00F8006C /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6BB4182BEB202D00F8006C /* MovieRow.swift */; };
+		4F6BB41B2BEB205700F8006C /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6BB41A2BEB205700F8006C /* ShimmerView.swift */; };
 		4FE1745F2BE9BB32006C950C /* CineHubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1745E2BE9BB32006C950C /* CineHubApp.swift */; };
 		4FE174632BE9BB33006C950C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE174622BE9BB33006C950C /* Assets.xcassets */; };
 		4FE174662BE9BB33006C950C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE174652BE9BB33006C950C /* Preview Assets.xcassets */; };
@@ -40,6 +44,10 @@
 /* Begin PBXFileReference section */
 		4F6BB4092BEAD68D00F8006C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		4F6BB40C2BEAD98300F8006C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4F6BB4132BEB1E9700F8006C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4F6BB4152BEB200B00F8006C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		4F6BB4182BEB202D00F8006C /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
+		4F6BB41A2BEB205700F8006C /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		4FE1745B2BE9BB32006C950C /* CineHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE1745E2BE9BB32006C950C /* CineHubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineHubApp.swift; sourceTree = "<group>"; };
 		4FE174622BE9BB33006C950C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6BB4102BEADE9600F8006C /* SDWebImageSwiftUI in Frameworks */,
+				4F12B9EE2BED75C4009B5EED /* IdentifiedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,9 +99,28 @@
 		4F6BB40B2BEAD97A00F8006C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				4F6BB40C2BEAD98300F8006C /* HomeView.swift */,
+				4F6BB4172BEB201D00F8006C /* Views */,
+				4F6BB4142BEB1FFA00F8006C /* HomeModel */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		4F6BB4142BEB1FFA00F8006C /* HomeModel */ = {
+			isa = PBXGroup;
+			children = (
+				4F6BB4152BEB200B00F8006C /* HomeModel.swift */,
+			);
+			path = HomeModel;
+			sourceTree = "<group>";
+		};
+		4F6BB4172BEB201D00F8006C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F6BB40C2BEAD98300F8006C /* HomeView.swift */,
+				4F6BB4182BEB202D00F8006C /* MovieRow.swift */,
+				4F6BB41A2BEB205700F8006C /* ShimmerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4FE174522BE9BB32006C950C = {
@@ -118,6 +146,7 @@
 		4FE1745D2BE9BB32006C950C /* CineHub */ = {
 			isa = PBXGroup;
 			children = (
+				4F6BB4132BEB1E9700F8006C /* Info.plist */,
 				4F6BB40B2BEAD97A00F8006C /* Home */,
 				4FE174882BE9BC98006C950C /* API */,
 				4FE1745E2BE9BB32006C950C /* CineHubApp.swift */,
@@ -180,6 +209,7 @@
 			name = CineHub;
 			packageProductDependencies = (
 				4F6BB40F2BEADE9600F8006C /* SDWebImageSwiftUI */,
+				4F12B9ED2BED75C4009B5EED /* IdentifiedCollections */,
 			);
 			productName = CineHub;
 			productReference = 4FE1745B2BE9BB32006C950C /* CineHub.app */;
@@ -255,6 +285,7 @@
 			mainGroup = 4FE174522BE9BB32006C950C;
 			packageReferences = (
 				4F6BB40E2BEADE9600F8006C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				4F12B9EC2BED75C4009B5EED /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
 			);
 			productRefGroup = 4FE1745C2BE9BB32006C950C /* Products */;
 			projectDirPath = "";
@@ -300,7 +331,10 @@
 			files = (
 				4FE1748E2BE9C38D006C950C /* Secrets.swift in Sources */,
 				4FE1745F2BE9BB32006C950C /* CineHubApp.swift in Sources */,
+				4F6BB4162BEB200B00F8006C /* HomeModel.swift in Sources */,
 				4F6BB40D2BEAD98300F8006C /* HomeView.swift in Sources */,
+				4F6BB41B2BEB205700F8006C /* ShimmerView.swift in Sources */,
+				4F6BB4192BEB202D00F8006C /* MovieRow.swift in Sources */,
 				4FE1748A2BE9BCB3006C950C /* APIClient.swift in Sources */,
 				4F6BB40A2BEAD68D00F8006C /* Movie.swift in Sources */,
 			);
@@ -469,9 +503,10 @@
 				DEVELOPMENT_TEAM = Z77T7JBU49;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CineHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -498,9 +533,10 @@
 				DEVELOPMENT_TEAM = Z77T7JBU49;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CineHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -634,6 +670,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4F12B9EC2BED75C4009B5EED /* XCRemoteSwiftPackageReference "swift-identified-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-identified-collections";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 		4F6BB40E2BEADE9600F8006C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -645,6 +689,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4F12B9ED2BED75C4009B5EED /* IdentifiedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F12B9EC2BED75C4009B5EED /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
+			productName = IdentifiedCollections;
+		};
 		4F6BB40F2BEADE9600F8006C /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4F6BB40E2BEADE9600F8006C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

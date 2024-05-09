@@ -34,5 +34,5 @@ private func getNowPlaying(page: Int) async throws -> [Movie] {
     }
     
     let nowPlayingResponse = try JSONDecoder().decode(NowPlayingResponse.self, from: data)
-    return nowPlayingResponse.results
+    return nowPlayingResponse.results.compactMap { $0.movie }
 }
