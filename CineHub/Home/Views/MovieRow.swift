@@ -6,13 +6,38 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MovieRow: View {
+    let title: String
+    let posterPath: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            posterImage
+            Text(title)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(Color.white)
+                .font(.custom("HelveticaNeue", size: 12))
+        }
+    }
+    
+    var posterImage: some View {
+        WebImage(url: URL(string: "https://image.tmdb.org/t/p/w300/\(posterPath)")) { image in
+            image.resizable()
+                .aspectRatio(contentMode: .fit)
+                .scaledToFill()
+                .frame(width: 90, height: 110)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        } placeholder: {
+            ShimmerView()
+                .frame(width: 90, height: 110)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
     }
 }
 
 #Preview {
-    MovieRow()
+    MovieRow(title: "An unexpected journey",
+             posterPath: "")
 }
