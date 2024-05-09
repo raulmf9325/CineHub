@@ -26,12 +26,25 @@ struct HomeView: View {
                     LazyVGrid(columns: columns, spacing: 30) {
                         ForEach(model.movies) { movie in
                             MovieRow(title: movie.title, posterPath: movie.poster_path)
-                            .onAppear {
-                                model.onMovieRowAppeared(id: movie.id)
-                            }
+                                .onAppear {
+                                    model.onMovieRowAppeared(id: movie.id)
+                                }
                         }
                     }
                     .padding(.horizontal)
+                    
+                    if model.onError {
+                        VStack(alignment: .center, spacing: 5) {
+                            Text("An error occurred 😢")
+                                .foregroundStyle(Color.white)
+                                .font(.title2)
+                                .multilineTextAlignment(.center)
+                            
+                            Text("Please pull to refresh")
+                                .foregroundStyle(Color.white)
+                        }
+                        .padding(.vertical)
+                    }
                 }
                 .refreshable {
                     model.refresh()
