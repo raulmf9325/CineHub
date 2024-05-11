@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct HomeView: View {
     @ObservedObject var model: HomeModel
+    @State private var selection: String?
     
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 10, alignment: .top),
@@ -22,6 +23,8 @@ struct HomeView: View {
             Color.black.ignoresSafeArea(.all)
             
             VStack {
+                MovieCategoryDown()
+                    .zIndex(1)
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 30) {
                         ForEach(model.movies) { movie in
@@ -52,6 +55,13 @@ struct HomeView: View {
                 .padding(.top)
             }
         }
+    }
+    
+    func MovieCategoryDown() -> some View {
+        DropDownView(hint: "",
+                     options: ["Now Playing", "Popular", "Top Rated", "Upcoming"],
+                     background: .black,
+                     selection: $selection)
     }
 }
 
