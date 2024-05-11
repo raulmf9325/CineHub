@@ -10,7 +10,6 @@ import SDWebImageSwiftUI
 
 struct HomeView: View {
     @ObservedObject var model: HomeModel
-    @State private var selection: String?
     
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 10, alignment: .top),
@@ -58,10 +57,9 @@ struct HomeView: View {
     }
     
     func MovieCategoryDown() -> some View {
-        DropDownView(hint: "",
-                     options: ["Now Playing", "Popular", "Top Rated", "Upcoming"],
+        DropDownView(options: ["Now Playing", "Popular", "Top Rated", "Upcoming"],
                      background: .black,
-                     selection: $selection)
+                     selection: $model.selectedCategory.toStringBinding())
     }
 }
 

@@ -11,6 +11,7 @@ import IdentifiedCollections
 @MainActor
 class HomeModel: ObservableObject {
     @Published var movies: IdentifiedArrayOf<Movie> = []
+    @Published var selectedCategory: MovieCategory = .nowPlaying
     @Published var onError = false
     
     private let apiClient: APIClient

@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct DropDownView: View {
-    var hint: String
     var options: [String]
     var anchor: Anchor = .bottom
     var background: Color = .white
     var maxWidth: CGFloat = 180
     var cornerRadius: CGFloat = 15
-    @Binding var selection: String?
+    @Binding var selection: String
     @State private var showOptions = false
     
     var body: some View {
@@ -27,7 +26,7 @@ struct DropDownView: View {
                 }
                 
                 HStack(spacing: 0) {
-                    Text(selection ?? hint)
+                    Text(selection)
                         .foregroundStyle(.white)
                         .lineLimit(1)
                     
@@ -71,7 +70,7 @@ struct DropDownView: View {
                     Spacer(minLength: 0)
                     
                     Image(systemName: "checkmark")
-                        .font(.body)
+                        .font(.callout)
                         .opacity(selection == option ? 1 : 0)
                         .foregroundStyle(.white)
                 }
@@ -97,11 +96,10 @@ struct DropDownView: View {
 }
 
 private struct DropDownPreview: View {
-    @State private var selection: String?
+    @State private var selection = "apple"
     
     var body: some View {
-        DropDownView(hint: "hint",
-                     options: ["apple", "pear", "banana", "strawberry"], 
+        DropDownView(options: ["apple", "pear", "banana", "strawberry"],
                      selection: $selection)
     }
 }
