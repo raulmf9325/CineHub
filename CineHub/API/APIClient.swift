@@ -8,15 +8,16 @@
 import Foundation
 
 struct APIClient {
-    var getNowPlaying: (Int) async throws -> [Movie]
+    var getMovieList: (MovieList, Int) async throws -> [Movie]
 }
 
 extension APIClient {
-    static let live: APIClient = APIClient(getNowPlaying: getNowPlaying(page:))
+    static let live: APIClient = APIClient(getMovieList: getMovieList(list:page:))
 }
 
-private func getNowPlaying(page: Int) async throws -> [Movie] {
-    let urlString = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=\(page)"
+private func getMovieList(list: MovieList, page: Int) async throws -> [Movie] {
+    
+    let urlString = "https://api.themoviedb.org/3/movie/\(list.apiQueryTitle)?language=en-US&page=\(page)"
     
     guard let url = URL(string: urlString) else {
         throw URLError(.badURL)
@@ -36,3 +37,5 @@ private func getNowPlaying(page: Int) async throws -> [Movie] {
     let nowPlayingResponse = try JSONDecoder().decode(NowPlayingResponse.self, from: data)
     return nowPlayingResponse.results.compactMap { $0.movie }
 }
+
+

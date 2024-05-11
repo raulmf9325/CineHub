@@ -11,7 +11,7 @@ struct DropDownView: View {
     var options: [String]
     var anchor: Anchor = .bottom
     var background: Color = .white
-    var maxWidth: CGFloat = 180
+    var maxWidth: CGFloat = 170
     var cornerRadius: CGFloat = 15
     @Binding var selection: String
     @State private var showOptions = false
@@ -29,11 +29,12 @@ struct DropDownView: View {
                     Text(selection)
                         .foregroundStyle(.white)
                         .lineLimit(1)
+                        .font(AppTheme.Typography.helvetica17)
                     
-                    Spacer(minLength: 0)
+                    Spacer()
                     
                     Image(systemName: "chevron.down")
-                        .font(.title3)
+                        .font(.body)
                         .foregroundStyle(.white)
                         .rotationEffect(.init(degrees: showOptions ? -180 : 0))
                 }
@@ -44,6 +45,7 @@ struct DropDownView: View {
                 .onTapGesture {
                     withAnimation(.snappy) {
                         showOptions.toggle()
+                        triggerHapticFeedback()
                     }
                 }
                 .zIndex(10)
@@ -66,6 +68,7 @@ struct DropDownView: View {
                 HStack(spacing: 0) {
                     Text(option)
                         .lineLimit(1)
+                        .font(AppTheme.Typography.helvetica17)
                     
                     Spacer(minLength: 0)
                     
@@ -82,12 +85,19 @@ struct DropDownView: View {
                     withAnimation(.snappy) {
                         selection = option
                         showOptions = false
+                        triggerHapticFeedback()
                     }
                 }
             }
         }
         .padding(.horizontal, 15)
         .transition(.move(edge: .top))
+    }
+    
+    func triggerHapticFeedback() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.prepare()
+        generator.impactOccurred()
     }
     
     enum Anchor {

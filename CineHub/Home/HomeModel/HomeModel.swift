@@ -5,28 +5,41 @@
 //  Created by Raul Mena on 5/7/24.
 //
 
+import Combine
 import SwiftUI
 import IdentifiedCollections
 
 @MainActor
 class HomeModel: ObservableObject {
     @Published var movies: IdentifiedArrayOf<Movie> = []
-    @Published var selectedCategory: MovieCategory = .nowPlaying
+    @Published var selectedList: MovieList = .nowPlaying
     @Published var onError = false
     
     private let apiClient: APIClient
     private var page = 1
+    private var cancelBag: Set<AnyCancellable> = []
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
-        refresh()
+        refresh(selectedList)
+        observeMovieListSelection()
     }
     
-    private func getNowPlaying(_ page: Int) {
+    private func observeMovieListSelection() {
+        $selectedList
+            .removeDuplicates()
+            .sink { [weak self] list in
+                guard let self else { return }
+                self.refresh(list)
+            }
+            .store(in: &cancelBag)
+    }
+    
+    private func getMovieList(_ list: MovieList, page: Int) {
         Task { @MainActor in
             do {
                 onError = false
-                let movies = try await apiClient.getNowPlaying(page)
+                let movies = try await apiClient.getMovieList(list, page)
                 self.movies.append(contentsOf: movies)
             } catch {
                 print("Error getting now playing: \(error)")
@@ -35,12 +48,12 @@ class HomeModel: ObservableObject {
         }
     }
     
-    func refresh() {
+    func refresh(_ list: MovieList) {
         Task { @MainActor in
             do {
                 onError = false
                 page = 1
-                let moviesArray = try await apiClient.getNowPlaying(1).shuffled()
+                let moviesArray = try await apiClient.getMovieList(list, 1)
                 self.movies = IdentifiedArray(uniqueElements: moviesArray)
             } catch {
                 onError = true
@@ -53,7 +66,7 @@ class HomeModel: ObservableObject {
         guard let id else { return }
         if id == movies.last?.id {
             page += 1
-            getNowPlaying(page)
+            getMovieList(selectedList, page: page)
         }
     }
 }

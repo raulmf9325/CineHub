@@ -22,7 +22,7 @@ struct HomeView: View {
             Color.black.ignoresSafeArea(.all)
             
             VStack {
-                MovieCategoryDown()
+                MovieListDown()
                     .zIndex(1)
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 30) {
@@ -49,17 +49,17 @@ struct HomeView: View {
                     }
                 }
                 .refreshable {
-                    model.refresh()
+                    model.refresh(model.selectedList)
                 }
                 .padding(.top)
             }
         }
     }
     
-    func MovieCategoryDown() -> some View {
-        DropDownView(options: ["Now Playing", "Popular", "Top Rated", "Upcoming"],
+    func MovieListDown() -> some View {
+        DropDownView(options: MovieList.allCases.map(\.rawValue),
                      background: .black,
-                     selection: $model.selectedCategory.toStringBinding())
+                     selection: $model.selectedList.toStringBinding())
     }
 }
 

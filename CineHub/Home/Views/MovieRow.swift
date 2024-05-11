@@ -18,7 +18,7 @@ struct MovieRow: View {
             Text(title)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(Color.white)
-                .font(.custom("HelveticaNeue", size: 12))
+                .font(AppTheme.Typography.helvetica12)
         }
     }
     
