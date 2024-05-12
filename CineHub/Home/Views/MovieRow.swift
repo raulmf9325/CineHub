@@ -11,6 +11,8 @@ import SDWebImageSwiftUI
 struct MovieRow: View {
     let title: String
     let posterPath: String
+    let imageWidth: CGFloat
+    let imageHeight: CGFloat
     
     var body: some View {
         VStack {
@@ -27,11 +29,11 @@ struct MovieRow: View {
             image.resizable()
                 .aspectRatio(contentMode: .fit)
                 .scaledToFill()
-                .frame(width: 90, height: 110)
+                .frame(width: imageWidth, height: imageHeight)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         } placeholder: {
             ShimmerView()
-                .frame(width: 90, height: 110)
+                .frame(width: imageWidth, height: imageHeight)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }
     }
@@ -39,5 +41,7 @@ struct MovieRow: View {
 
 #Preview {
     MovieRow(title: "An unexpected journey",
-             posterPath: "")
+             posterPath: "",
+             imageWidth: 90,
+             imageHeight: 110)
 }

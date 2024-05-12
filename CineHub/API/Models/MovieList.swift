@@ -8,7 +8,7 @@
 import Foundation
 
 enum MovieList: String, CaseIterable {
-    case nowPlaying = "Now playing"
+    case nowPlaying = "Now Playing"
     case popular = "Popular"
     case upcoming = "Upcoming"
     case topRated = "Top Rated"

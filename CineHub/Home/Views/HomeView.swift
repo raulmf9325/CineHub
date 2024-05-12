@@ -10,24 +10,22 @@ import SDWebImageSwiftUI
 
 struct HomeView: View {
     @ObservedObject var model: HomeModel
-    
-    let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: 10, alignment: .top),
-        GridItem(.flexible(), spacing: 10, alignment: .top),
-        GridItem(.flexible(), spacing: 10, alignment: .top)
-    ]
-    
+    @State private var gridLayout: GridLayout = .three
+        
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea(.all)
             
             VStack {
-                MovieListDown()
-                    .zIndex(1)
+                Header
+                
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 30) {
                         ForEach(model.movies) { movie in
-                            MovieRow(title: movie.title, posterPath: movie.poster_path)
+                            MovieRow(title: movie.title, 
+                                     posterPath: movie.poster_path,
+                                     imageWidth: gridLayout == .three ? 90 : 150,
+                                     imageHeight: gridLayout == .three ? 110 : 200)
                                 .onAppear {
                                     model.onMovieRowAppeared(id: movie.id)
                                 }
@@ -56,11 +54,65 @@ struct HomeView: View {
         }
     }
     
-    func MovieListDown() -> some View {
+    var Header: some View {
+        HStack {
+            Button(action: {
+                    switch gridLayout {
+                    case .two:
+                        gridLayout = .three
+                    case .three:
+                        gridLayout = .two
+                    }
+            }, label: {
+                Image(systemName: gridLayout == .three ? "square.grid.3x3.fill" : "square.grid.2x2.fill")
+                    .foregroundStyle(.white)
+                    .font(.title2)
+                    .animation(nil, value: gridLayout)
+            })
+            .padding(.leading, 40)
+            
+            Spacer()
+            
+            MovieListDropDown()
+            
+            Spacer()
+        }
+        .zIndex(2)
+    }
+    
+    var columns: [GridItem] {
+        switch gridLayout {
+        case .two:
+            return .two
+        case .three:
+            return .three
+        }
+    }
+    
+    func MovieListDropDown() -> some View {
         DropDownView(options: MovieList.allCases.map(\.rawValue),
                      background: .black,
                      selection: $model.selectedList.toStringBinding())
     }
+}
+
+extension HomeView {
+    enum GridLayout {
+        case two
+        case three
+    }
+}
+
+private extension Array where Element == GridItem {
+    static let two: [GridItem] = [
+        GridItem(.flexible(), spacing: 10, alignment: .top),
+        GridItem(.flexible(), spacing: 10, alignment: .top)
+    ]
+    static let three: [GridItem] = [
+        GridItem(.flexible(), spacing: 10, alignment: .top),
+        GridItem(.flexible(), spacing: 10, alignment: .top),
+        GridItem(.flexible(), spacing: 10, alignment: .top)
+    ]
 }
 
 #Preview {

@@ -11,7 +11,7 @@ struct DropDownView: View {
     var options: [String]
     var anchor: Anchor = .bottom
     var background: Color = .white
-    var maxWidth: CGFloat = 170
+    var maxWidth: CGFloat = 190
     var cornerRadius: CGFloat = 15
     @Binding var selection: String
     @State private var showOptions = false
@@ -29,12 +29,12 @@ struct DropDownView: View {
                     Text(selection)
                         .foregroundStyle(.white)
                         .lineLimit(1)
-                        .font(AppTheme.Typography.helvetica17)
+                        .font(AppTheme.Typography.helvetica19)
                     
                     Spacer()
                     
                     Image(systemName: "chevron.down")
-                        .font(.body)
+                        .font(.title2)
                         .foregroundStyle(.white)
                         .rotationEffect(.init(degrees: showOptions ? -180 : 0))
                 }
