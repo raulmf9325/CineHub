@@ -18,6 +18,7 @@
 		4F78FFF52BEFF4960093C385 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78FFF42BEFF4960093C385 /* MovieList.swift */; };
 		4F78FFF82BEFF4C40093C385 /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78FFF72BEFF4C40093C385 /* BindingExtension.swift */; };
 		4F78FFFB2BEFF58E0093C385 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78FFFA2BEFF58E0093C385 /* AppTheme.swift */; };
+		4F8EA99A2BF16F5F00640270 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EA9992BF16F5F00640270 /* HeaderView.swift */; };
 		4FE1745F2BE9BB32006C950C /* CineHubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1745E2BE9BB32006C950C /* CineHubApp.swift */; };
 		4FE174632BE9BB33006C950C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE174622BE9BB33006C950C /* Assets.xcassets */; };
 		4FE174662BE9BB33006C950C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE174652BE9BB33006C950C /* Preview Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		4F78FFF42BEFF4960093C385 /* MovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
 		4F78FFF72BEFF4C40093C385 /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 		4F78FFFA2BEFF58E0093C385 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		4F8EA9992BF16F5F00640270 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		4FE1745B2BE9BB32006C950C /* CineHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE1745E2BE9BB32006C950C /* CineHubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineHubApp.swift; sourceTree = "<group>"; };
 		4FE174622BE9BB33006C950C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				4F6BB4182BEB202D00F8006C /* MovieRow.swift */,
 				4F6BB41A2BEB205700F8006C /* ShimmerView.swift */,
 				4F5D16A32BED922700DF3561 /* DropDownView.swift */,
+				4F8EA9992BF16F5F00640270 /* HeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				4F78FFFB2BEFF58E0093C385 /* AppTheme.swift in Sources */,
 				4FE1748A2BE9BCB3006C950C /* APIClient.swift in Sources */,
 				4F6BB40A2BEAD68D00F8006C /* Movie.swift in Sources */,
+				4F8EA99A2BF16F5F00640270 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,7 +17,9 @@ struct HomeView: View {
             Color.black.ignoresSafeArea(.all)
             
             VStack {
-                Header
+                HeaderView(gridLayout: $gridLayout,
+                           selection: $model.selectedList.toStringBinding(),
+                           text: .constant(""))
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 30) {
@@ -53,33 +55,7 @@ struct HomeView: View {
             }
         }
     }
-    
-    var Header: some View {
-        HStack {
-            Button(action: {
-                    switch gridLayout {
-                    case .two:
-                        gridLayout = .three
-                    case .three:
-                        gridLayout = .two
-                    }
-            }, label: {
-                Image(systemName: gridLayout == .three ? "square.grid.3x3.fill" : "square.grid.2x2.fill")
-                    .foregroundStyle(.white)
-                    .font(.title2)
-                    .animation(nil, value: gridLayout)
-            })
-            .padding(.leading, 40)
-            
-            Spacer()
-            
-            MovieListDropDown()
-            
-            Spacer()
-        }
-        .zIndex(2)
-    }
-    
+        
     var columns: [GridItem] {
         switch gridLayout {
         case .two:
@@ -87,19 +63,6 @@ struct HomeView: View {
         case .three:
             return .three
         }
-    }
-    
-    func MovieListDropDown() -> some View {
-        DropDownView(options: MovieList.allCases.map(\.rawValue),
-                     background: .black,
-                     selection: $model.selectedList.toStringBinding())
-    }
-}
-
-extension HomeView {
-    enum GridLayout {
-        case two
-        case three
     }
 }
 

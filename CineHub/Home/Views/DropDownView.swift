@@ -93,16 +93,16 @@ struct DropDownView: View {
         .padding(.horizontal, 15)
         .transition(.move(edge: .top))
     }
-    
-    func triggerHapticFeedback() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.prepare()
-        generator.impactOccurred()
-    }
-    
+        
     enum Anchor {
         case top, bottom
     }
+}
+
+func triggerHapticFeedback() {
+    let generator = UIImpactFeedbackGenerator(style: .medium)
+    generator.prepare()
+    generator.impactOccurred()
 }
 
 private struct DropDownPreview: View {
