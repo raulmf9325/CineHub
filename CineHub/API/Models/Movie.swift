@@ -15,7 +15,7 @@ struct Movie: Decodable, Identifiable {
     var backdrop_path: String?
     var genre_ids: [Int]?
     var overview: String?
-    var release_date: String?
+    var release_date: Date?
 }
 
 struct FailableMovie: Decodable {
@@ -23,7 +23,13 @@ struct FailableMovie: Decodable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.movie = try? container.decode(Movie.self)
+        
+        do {
+            self.movie = try container.decode(Movie.self)
+        } catch {
+            print("Error docoding movie: \(error)")
+            self.movie = nil
+        }
     }
 }
 

@@ -16,7 +16,6 @@ extension APIClient {
 }
 
 private func getMovieList(list: MovieList, page: Int) async throws -> [Movie] {
-    
     let urlString = "https://api.themoviedb.org/3/movie/\(list.apiQueryTitle)?language=en-US&page=\(page)"
     
     guard let url = URL(string: urlString) else {
@@ -34,8 +33,27 @@ private func getMovieList(list: MovieList, page: Int) async throws -> [Movie] {
         throw URLError(.badServerResponse)
     }
     
-    let nowPlayingResponse = try JSONDecoder().decode(NowPlayingResponse.self, from: data)
-    return nowPlayingResponse.results.compactMap { $0.movie }
+    let decoder = JSONDecoder()
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    decoder.dateDecodingStrategy = .formatted(dateFormatter)
+    
+    var movieList = try decoder
+        .decode(NowPlayingResponse.self, from: data)
+        .results
+        .compactMap { $0.movie }
+    
+    if list == .upcoming {
+        movieList = movieList.filter {
+            if let releaseDate = $0.release_date, releaseDate < Date() {
+                return false
+            } else {
+                return true
+            }
+        }
+    }
+    
+    return movieList
 }
 
 

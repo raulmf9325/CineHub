@@ -21,7 +21,6 @@ class HomeModel: ObservableObject {
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
-        refresh(selectedList)
         observeMovieListSelection()
     }
     
