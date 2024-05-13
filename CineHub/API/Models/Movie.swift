@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Movie: Decodable, Identifiable {
+struct Movie: Decodable, Identifiable, Hashable {
     var id: Int
     var title: String
+    var overview: String
     var poster_path: String
     var backdrop_path: String?
-    var overview: String?
     var release_date: Date?
 }
 

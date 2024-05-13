@@ -36,6 +36,7 @@ struct MovieDetailsView: View {
         }
         .background(Color.black)
         .ignoresSafeArea()
+        .toolbar(.hidden)
     }
     
     func TitleText() -> some View {

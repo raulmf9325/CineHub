@@ -11,52 +11,62 @@ import SDWebImageSwiftUI
 struct HomeView: View {
     @ObservedObject var model: HomeModel
     @State private var gridLayout: GridLayout = .three
-        
+    
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea(.all)
-            
-            VStack {
-                HeaderView(gridLayout: $gridLayout,
-                           selection: $model.selectedList.toStringBinding(),
-                           text: $model.movieSearchQuery,
-                           isSearching: $model.isSearchingMovie)
+        NavigationStack {
+            ZStack {
+                Color.black.ignoresSafeArea(.all)
                 
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 30) {
-                        ForEach(model.movies) { movie in
-                            MovieRow(title: movie.title, 
-                                     posterPath: movie.poster_path,
-                                     imageWidth: gridLayout == .three ? 90 : 150,
-                                     imageHeight: gridLayout == .three ? 110 : 200)
-                                .onAppear {
-                                    model.onMovieRowAppeared(id: movie.id)
-                                }
-                        }
-                    }
-                    .padding(.horizontal)
+                VStack {
+                    HeaderView(gridLayout: $gridLayout,
+                               selection: $model.selectedList.toStringBinding(),
+                               text: $model.movieSearchQuery,
+                               isSearching: $model.isSearchingMovie)
                     
-                    if model.onError {
-                        VStack(alignment: .center, spacing: 5) {
-                            Text("An error occurred 😢")
-                                .foregroundStyle(Color.white)
-                                .font(.title2)
-                                .multilineTextAlignment(.center)
-                            
-                            Text("Please pull to refresh")
-                                .foregroundStyle(Color.white)
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 30) {
+                            ForEach(model.movies) { movie in
+                                NavigationLink(value: movie) {
+                                    MovieRow(title: movie.title,
+                                             posterPath: movie.poster_path,
+                                             imageWidth: gridLayout == .three ? 90 : 150,
+                                             imageHeight: gridLayout == .three ? 110 : 200)
+                                    .onAppear {
+                                        model.onMovieRowAppeared(id: movie.id)
+                                    }
+                                }
+                            }
                         }
-                        .padding(.vertical)
+                        .padding(.horizontal)
+                        .navigationDestination(for: Movie.self) { movie in
+                            MovieDetailsView(model: MovieDetailsModel(movieId: movie.id,
+                                                                      title: movie.title,
+                                                                      overview: movie.overview,
+                                                                      posterPath: movie.poster_path, backdropPath: movie.backdrop_path, releaseDate: movie.release_date, apiClient: .live))
+                        }
+                        
+                        if model.onError {
+                            VStack(alignment: .center, spacing: 5) {
+                                Text("An error occurred 😢")
+                                    .foregroundStyle(Color.white)
+                                    .font(.title2)
+                                    .multilineTextAlignment(.center)
+                                
+                                Text("Please pull to refresh")
+                                    .foregroundStyle(Color.white)
+                            }
+                            .padding(.vertical)
+                        }
                     }
+                    .refreshable {
+                        model.refresh(model.selectedList)
+                    }
+                    .padding(.top)
                 }
-                .refreshable {
-                    model.refresh(model.selectedList)
-                }
-                .padding(.top)
             }
         }
     }
-        
+    
     var columns: [GridItem] {
         switch gridLayout {
         case .two:
