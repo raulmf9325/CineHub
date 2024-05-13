@@ -59,9 +59,9 @@ class HomeModel: ObservableObject {
             .sink { [weak self] query in
                 guard let self, isSearchingMovie else { return }
                 
-                if query.isEmpty {
-                    movies = []
-                } else {
+                movies = []
+                
+                if !query.isEmpty {
                     searchMovie(query, page: 1)
                 }
             }
@@ -72,8 +72,8 @@ class HomeModel: ObservableObject {
         Task { @MainActor in
             do {
                 onError = false
-                let movies = try await apiClient.searchMovie(query, 1)
-                self.movies = IdentifiedArray(uniqueElements: movies)
+                let movies = try await apiClient.searchMovie(query, page)
+                self.movies.append(contentsOf: IdentifiedArray(uniqueElements: movies))
             } catch {
                 print("Error searching for movie '\(query)': \(error)")
                 onError = true
@@ -114,7 +114,7 @@ class HomeModel: ObservableObject {
             page += 1
             
             if isSearchingMovie {
-//                searchMovie(movieSearchQuery, page: page)
+                searchMovie(movieSearchQuery, page: page)
             } else {
                 getMovieList(selectedList, page: page)
             }

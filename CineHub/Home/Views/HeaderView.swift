@@ -18,6 +18,8 @@ struct HeaderView: View {
     @Binding var text: String
     @Binding var isSearching: Bool
     
+    @FocusState private var focus: FocusTextField?
+    
     var body: some View {
         if isSearching {
             SearchView()
@@ -28,6 +30,10 @@ struct HeaderView: View {
 }
 
 extension HeaderView {
+    enum FocusTextField {
+        case searchMovie
+    }
+    
     func MovieListView() -> some View {
         HStack {
             GridLayoutButton()
@@ -50,6 +56,7 @@ extension HeaderView {
             Spacer()
             
             TextField("Search Movie", text: $text, prompt: Text("Search Movie").foregroundStyle(.gray))
+                .focused($focus, equals: .searchMovie)
                 .padding(10)
                 .background(Color.white)
                 .foregroundStyle(.black)
@@ -60,6 +67,7 @@ extension HeaderView {
             Spacer()
             
             Button(action: {
+                focus = nil
                 text = ""
                 isSearching = false
                 triggerHapticFeedback()
@@ -71,6 +79,9 @@ extension HeaderView {
             })
         }
         .frame(height: 60)
+        .onAppear {
+            focus = .searchMovie
+        }
     }
     
     func GridLayoutButton() -> some View {
