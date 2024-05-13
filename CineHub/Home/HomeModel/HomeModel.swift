@@ -15,6 +15,9 @@ class HomeModel: ObservableObject {
     @Published var selectedList: MovieList = .nowPlaying
     @Published var onError = false
     
+    @Published var movieSearchQuery = ""
+    @Published var isSearchingMovie = false
+    
     private let apiClient: APIClient
     private var page = 1
     private var cancelBag: Set<AnyCancellable> = []
@@ -22,6 +25,7 @@ class HomeModel: ObservableObject {
     init(apiClient: APIClient) {
         self.apiClient = apiClient
         observeMovieListSelection()
+        observeSearchQuery()
     }
     
     private func observeMovieListSelection() {
@@ -32,6 +36,49 @@ class HomeModel: ObservableObject {
                 self.refresh(list)
             }
             .store(in: &cancelBag)
+    }
+    
+    private func observeSearchQuery() {
+        $isSearchingMovie
+            .dropFirst()
+            .removeDuplicates()
+            .sink { [weak self] isSearching in
+                guard let self else { return }
+                if !isSearching {
+                    refresh(selectedList)
+                } else {
+                    self.movies = []
+                }
+            }
+            .store(in: &cancelBag)
+        
+        $movieSearchQuery
+            .dropFirst()
+            .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .sink { [weak self] query in
+                guard let self, isSearchingMovie else { return }
+                
+                if query.isEmpty {
+                    movies = []
+                } else {
+                    searchMovie(query, page: 1)
+                }
+            }
+            .store(in: &cancelBag)
+    }
+    
+    private func searchMovie(_ query: String, page: Int) {
+        Task { @MainActor in
+            do {
+                onError = false
+                let movies = try await apiClient.searchMovie(query, 1)
+                self.movies = IdentifiedArray(uniqueElements: movies)
+            } catch {
+                print("Error searching for movie '\(query)': \(error)")
+                onError = true
+            }
+        }
     }
     
     private func getMovieList(_ list: MovieList, page: Int) {
@@ -65,7 +112,12 @@ class HomeModel: ObservableObject {
         guard let id else { return }
         if id == movies.last?.id {
             page += 1
-            getMovieList(selectedList, page: page)
+            
+            if isSearchingMovie {
+//                searchMovie(movieSearchQuery, page: page)
+            } else {
+                getMovieList(selectedList, page: page)
+            }
         }
     }
 }

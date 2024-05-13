@@ -16,7 +16,7 @@ struct HeaderView: View {
     @Binding var gridLayout: GridLayout
     @Binding var selection: String
     @Binding var text: String
-    @State private var isSearching = false
+    @Binding var isSearching: Bool
     
     var body: some View {
         if isSearching {
@@ -49,15 +49,18 @@ extension HeaderView {
             
             Spacer()
             
-            TextField("", text: $text, prompt: Text("Search Movie"))
+            TextField("Search Movie", text: $text, prompt: Text("Search Movie").foregroundStyle(.gray))
                 .padding(10)
                 .background(Color.white)
+                .foregroundStyle(.black)
+                .font(AppTheme.Typography.helvetica15)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .padding()
             
             Spacer()
             
             Button(action: {
+                text = ""
                 isSearching = false
                 triggerHapticFeedback()
             }, label: {
@@ -118,7 +121,8 @@ extension HeaderView {
         VStack {
             HeaderView(gridLayout: $layout,
                        selection: .constant("Now Playing"),
-                       text: .constant(""))
+                       text: .constant(""),
+                       isSearching: .constant(false))
             
             Spacer()
         }

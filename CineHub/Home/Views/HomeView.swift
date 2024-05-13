@@ -19,7 +19,8 @@ struct HomeView: View {
             VStack {
                 HeaderView(gridLayout: $gridLayout,
                            selection: $model.selectedList.toStringBinding(),
-                           text: .constant(""))
+                           text: $model.movieSearchQuery,
+                           isSearching: $model.isSearchingMovie)
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 30) {
