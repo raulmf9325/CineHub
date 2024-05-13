@@ -29,7 +29,7 @@ struct DropDownView: View {
                     Text(selection)
                         .foregroundStyle(.white)
                         .lineLimit(1)
-                        .font(AppTheme.Typography.helvetica19)
+                        .font(AppTheme.Typography.helvetica19Bold)
                     
                     Spacer()
                     

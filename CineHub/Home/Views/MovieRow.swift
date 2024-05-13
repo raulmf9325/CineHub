@@ -29,13 +29,11 @@ struct MovieRow: View {
             image.resizable()
                 .aspectRatio(contentMode: .fit)
                 .scaledToFill()
-                .frame(width: imageWidth, height: imageHeight)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
         } placeholder: {
             ShimmerView()
-                .frame(width: imageWidth, height: imageHeight)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
+        .frame(width: imageWidth, height: imageHeight)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
