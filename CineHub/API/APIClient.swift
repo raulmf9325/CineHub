@@ -45,6 +45,10 @@ private func searchMovie(_ query: String, page: Int) async throws -> [Movie] {
     return try decodeMovieList(data)
 }
 
+private func getDetails(_ movieId: Int) {
+    let urlString = "https://api.themoviedb.org/3/movie/\(movieId)?append_to_response=credits&language=en-US"
+}
+
 private func urlRequest(for urlString: String) throws -> URLRequest {
     guard let url = URL(string: urlString) else {
         throw URLError(.badURL)
