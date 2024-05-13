@@ -11,9 +11,7 @@ struct Movie: Decodable, Identifiable {
     var id: Int
     var title: String
     var poster_path: String
-    var vote_average: Double?
     var backdrop_path: String?
-    var genre_ids: [Int]?
     var overview: String?
     var release_date: Date?
 }
