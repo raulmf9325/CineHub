@@ -10,33 +10,60 @@ import SDWebImageSwiftUI
 
 struct MovieDetailsView: View {
     @ObservedObject var model: MovieDetailsModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ScrollView() {
-            PosterImage()
-            HStack(alignment: .top) {
-                ThumbImage()
-                    .offset(y: -60)
-                TitleText()
-                    .padding()
+        ZStack {
+            ScrollView() {
+                PosterImage()
+                HStack(alignment: .top) {
+                    ThumbImage()
+                        .offset(y: -60)
+                    TitleText()
+                        .padding()
+                    Spacer()
+                }
+                .padding(.leading, 30)
+                            
+                VStack(alignment: .leading, spacing: 8) {
+                    GenresText()
+                    ReleaseDateText()
+                    DirectorText()
+                    OverviewText()
+                        .padding(.top)
+                }
+                .offset(y: -45)
+                .padding(.leading, 30)
+                .padding(.trailing)
+            }
+            .background(Color.black)
+            .ignoresSafeArea()
+            
+            VStack {
+                ToolBar()
                 Spacer()
             }
-            .padding(.leading, 30)
-                        
-            VStack(alignment: .leading, spacing: 8) {
-                GenresText()
-                ReleaseDateText()
-                DirectorText()
-                OverviewText()
-                    .padding(.top)
-            }
-            .offset(y: -45)
-            .padding(.leading, 30)
-            .padding(.trailing)
-        }
-        .background(Color.black)
-        .ignoresSafeArea()
+            .padding(.horizontal, 30)
         .toolbar(.hidden)
+        }
+    }
+    
+    func ToolBar() -> some View {
+        HStack {
+            Button(action: {
+                dismiss()
+            }) {
+                Circle().fill(Color.black.opacity(0.4))
+                    .frame(width: 40)
+                    .overlay(
+                        Image(systemName: "chevron.left")
+                            .font(.title)
+                            .foregroundStyle(.white)
+                    )
+                
+                Spacer()
+            }
+        }
     }
     
     func TitleText() -> some View {
