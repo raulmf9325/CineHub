@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct CastMember: Decodable {
+struct CastMember: Decodable, Identifiable {
     let name: String
     let character: String
     let profile_path: String?
+    
+    var id: String { name }
 }

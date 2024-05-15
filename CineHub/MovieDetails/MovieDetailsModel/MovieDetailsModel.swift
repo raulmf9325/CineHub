@@ -14,6 +14,7 @@ class MovieDetailsModel: ObservableObject {
     @Published var director: String?
     @Published var runtime: String?
     @Published var rottenTomatoesScore: String?
+    @Published var cast: [CastMember] = []
     
     let movieId: Int
     let title: String
@@ -50,6 +51,7 @@ class MovieDetailsModel: ObservableObject {
                 let details = try await apiClient.getDetails(movieId)
                 self.genres = details.genres.map { $0.name }
                 self.director = details.credits.crew.first { $0.job == "Director" }?.name
+                self.cast = details.credits.cast
                 
                 self.runtime = details.runtime.flatMap {
                     let hours = $0 / 60
@@ -66,14 +68,14 @@ class MovieDetailsModel: ObservableObject {
     private func getRottenTomatoesScore() {
         Task(priority: .userInitiated) { @MainActor in
             guard let rottenTitle = removeNonAlphabeticCharacters(from: title) else { return }
-            print(rottenTitle)
+        
             if let percentage = try await getRottenTomatoesPercentage("https://www.rottentomatoes.com/m/\(rottenTitle)")  {
                 rottenTomatoesScore = percentage
             } else if let releaseDate {
                 // retry appending release date year
                 let year = Calendar.current.component(.year, from: releaseDate)
                 let modifiedTitle = rottenTitle + "_\(year)"
-                print(modifiedTitle)
+                
                 if let percentage = try await getRottenTomatoesPercentage("https://www.rottentomatoes.com/m/\(modifiedTitle)")  {
                     rottenTomatoesScore = percentage
                 }

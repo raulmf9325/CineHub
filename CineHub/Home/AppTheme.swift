@@ -12,6 +12,7 @@ struct AppTheme {}
 extension AppTheme {
     struct Typography {
         static let helvetica12 = Font.custom("HelveticaNeue", size: 12)
+        static let helvetica14 = Font.custom("HelveticaNeue", size: 14)
         static let helvetica15 = Font.custom("HelveticaNeue", size: 15)
         static let helvetica16 = Font.custom("HelveticaNeue", size: 16)
         static let helvetica16Bold = Font.custom("HelveticaNeue-Bold", size: 16)

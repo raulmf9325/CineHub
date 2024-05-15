@@ -37,6 +37,9 @@ struct MovieDetailsView: View {
                     DirectorText()
                     OverviewText()
                         .padding(.top)
+                    
+                    CastView()
+                        .padding(.top)
                 }
                 .offset(y: -45)
                 .padding(.leading, 30)
@@ -60,10 +63,10 @@ struct MovieDetailsView: View {
                 dismiss()
             }) {
                 Circle().fill(Color.black.opacity(0.4))
-                    .frame(width: 40)
+                    .frame(width: 35)
                     .overlay(
                         Image(systemName: "chevron.left")
-                            .font(.title)
+                            .font(.title2)
                             .foregroundStyle(.white)
                     )
                 
@@ -76,6 +79,7 @@ struct MovieDetailsView: View {
         Text(model.title)
             .font(AppTheme.Typography.helvetica18)
             .foregroundStyle(.white)
+            .multilineTextAlignment(.center)
     }
     
     @ViewBuilder
@@ -83,7 +87,7 @@ struct MovieDetailsView: View {
         if let runtime = model.runtime {
             Text(runtime)
                 .font(AppTheme.Typography.helvetica15)
-                .foregroundStyle(.white)
+                .foregroundStyle(.gray)
         }
     }
     
@@ -97,22 +101,28 @@ struct MovieDetailsView: View {
                     .frame(width: 20)
                 Text(score)
                     .font(AppTheme.Typography.helvetica15)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.gray)
             }
         }
     }
 
     
     func OverviewText() -> some View {
-        Text(model.overview)
-            .font(AppTheme.Typography.helvetica15)
-            .foregroundStyle(.white)
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Overview")
+                .font(AppTheme.Typography.helvetica16)
+                .bold()
+                .foregroundStyle(.white)
+            Text(model.overview)
+                .font(AppTheme.Typography.helvetica15)
+                .foregroundStyle(.gray)
+        }
     }
     
     @ViewBuilder
     func GenresText() -> some View {
         if !model.genres.isEmpty {
-            HStack {
+            HStack(alignment: .top) {
                 Text("Genres:")
                     .font(AppTheme.Typography.helvetica16Bold)
                 Text(model.genres.joined(separator: ", "))
@@ -177,6 +187,52 @@ struct MovieDetailsView: View {
         }
         .frame(width: 110, height: 160)
         .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+    
+    func CastView() -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack(spacing: 30) {
+                ForEach(model.cast) { castMember in
+                    VStack(alignment: .center) {
+                        CastMemberImage(castMember.profile_path)
+                        
+                        Text(castMember.name)
+                            .font(AppTheme.Typography.helvetica12)
+                            .foregroundStyle(.gray)
+                            .padding(.top, 1)
+                        
+                        Text("as")
+                            .font(AppTheme.Typography.helvetica12)
+                            .foregroundStyle(.gray)
+                        
+                        Text(castMember.character)
+                            .font(AppTheme.Typography.helvetica12)
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func CastMemberImage(_ posterPath: String?) -> some View {
+        if let posterPath {
+            WebImage(url: URL(string: "https://image.tmdb.org/t/p/w300/\(posterPath)")) { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFill()
+            } placeholder: {
+                ShimmerView()
+            }
+            .frame(width: 90, height: 90)
+            .clipShape(Circle())
+        } else {
+            Image(systemName: "person.crop.circle.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 90)
+                .foregroundStyle(.white)
+        }
     }
     
     private func formatDate(_ date: Date) -> String {
