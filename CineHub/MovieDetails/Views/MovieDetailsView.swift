@@ -90,9 +90,15 @@ struct MovieDetailsView: View {
     @ViewBuilder
     func RottenTomatoesScore() -> some View {
         if let score = model.rottenTomatoesScore {
-            Text(score)
-                .font(AppTheme.Typography.helvetica15)
-                .foregroundStyle(.white)
+            HStack {
+                Image("Rotten_Tomatoes")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20)
+                Text(score)
+                    .font(AppTheme.Typography.helvetica15)
+                    .foregroundStyle(.white)
+            }
         }
     }
 

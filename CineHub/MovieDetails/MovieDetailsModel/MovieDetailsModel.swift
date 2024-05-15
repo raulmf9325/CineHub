@@ -44,7 +44,7 @@ class MovieDetailsModel: ObservableObject {
     }
     
     private func getMovieDetails() {
-        Task { @MainActor in
+        Task(priority: .userInitiated) { @MainActor in
             do {
                 onError = false
                 let details = try await apiClient.getDetails(movieId)
@@ -64,20 +64,28 @@ class MovieDetailsModel: ObservableObject {
     }
     
     private func getRottenTomatoesScore() {
-        Task { @MainActor in
+        Task(priority: .userInitiated) { @MainActor in
             guard let rottenTitle = removeNonAlphabeticCharacters(from: title) else { return }
-            
             print(rottenTitle)
-            
-            let urlString = "https://www.rottentomatoes.com/m/\(rottenTitle)"
-            guard let url = URL(string: urlString) else { return }
-            
-            let (data, _) = try await URLSession.shared.data(from: url)
-            if let html = String(data: data, encoding: .utf8),
-               let percentage = extractPercentage(from: html) {
+            if let percentage = try await getRottenTomatoesPercentage("https://www.rottentomatoes.com/m/\(rottenTitle)")  {
                 rottenTomatoesScore = percentage
+            } else if let releaseDate {
+                // retry appending release date year
+                let year = Calendar.current.component(.year, from: releaseDate)
+                let modifiedTitle = rottenTitle + "_\(year)"
+                print(modifiedTitle)
+                if let percentage = try await getRottenTomatoesPercentage("https://www.rottentomatoes.com/m/\(modifiedTitle)")  {
+                    rottenTomatoesScore = percentage
+                }
             }
         }
+    }
+    
+    private func getRottenTomatoesPercentage(_ urlString: String) async throws -> String? {
+        guard let url = URL(string: urlString) else { return nil }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        guard let html = String(data: data, encoding: .utf8) else { return nil }
+        return extractPercentage(from: html)
     }
 }
 

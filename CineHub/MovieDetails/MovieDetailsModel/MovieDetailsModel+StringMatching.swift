@@ -10,7 +10,7 @@ import Foundation
 extension MovieDetailsModel {
     func removeNonAlphabeticCharacters(from input: String) -> String? {
         // Regular expression pattern to match non-alphabetic characters
-        let pattern = "[^a-zA-Z]+"
+        let pattern = "[^a-zA-Z0-9]+"
         
         // Create a regular expression with the pattern
         guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
