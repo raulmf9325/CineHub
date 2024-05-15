@@ -106,16 +106,18 @@ struct MovieDetailsView: View {
         }
     }
 
-    
+    @ViewBuilder
     func OverviewText() -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Overview")
-                .font(AppTheme.Typography.helvetica16)
-                .bold()
-                .foregroundStyle(.white)
-            Text(model.overview)
-                .font(AppTheme.Typography.helvetica15)
-                .foregroundStyle(.gray)
+        if !model.overview.isEmpty {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Overview")
+                    .font(AppTheme.Typography.helvetica16)
+                    .bold()
+                    .foregroundStyle(.white)
+                Text(model.overview)
+                    .font(AppTheme.Typography.helvetica15)
+                    .foregroundStyle(.gray)
+            }
         }
     }
     
