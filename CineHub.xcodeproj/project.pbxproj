@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F12B9EE2BED75C4009B5EED /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 4F12B9ED2BED75C4009B5EED /* IdentifiedCollections */; };
+		4F2422912BF4462300099C08 /* MovieDetailsModel+StringMatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2422902BF4462300099C08 /* MovieDetailsModel+StringMatching.swift */; };
 		4F5D16A42BED922700DF3561 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D16A32BED922700DF3561 /* DropDownView.swift */; };
 		4F6BB40A2BEAD68D00F8006C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6BB4092BEAD68D00F8006C /* Movie.swift */; };
 		4F6BB40D2BEAD98300F8006C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6BB40C2BEAD98300F8006C /* HomeView.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F2422902BF4462300099C08 /* MovieDetailsModel+StringMatching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailsModel+StringMatching.swift"; sourceTree = "<group>"; };
 		4F5D16A32BED922700DF3561 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		4F6BB4092BEAD68D00F8006C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		4F6BB40C2BEAD98300F8006C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				4F8696E92BF2CA7B00110AE1 /* MovieDetailsModel.swift */,
+				4F2422902BF4462300099C08 /* MovieDetailsModel+StringMatching.swift */,
 			);
 			path = MovieDetailsModel;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				4F78FFFB2BEFF58E0093C385 /* AppTheme.swift in Sources */,
 				4FE1748A2BE9BCB3006C950C /* APIClient.swift in Sources */,
 				4F6BB40A2BEAD68D00F8006C /* Movie.swift in Sources */,
+				4F2422912BF4462300099C08 /* MovieDetailsModel+StringMatching.swift in Sources */,
 				4F8696E52BF2BE2200110AE1 /* Credits.swift in Sources */,
 				4F8EA99A2BF16F5F00640270 /* HeaderView.swift in Sources */,
 			);
@@ -592,7 +596,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CineHub/Preview Content\"";
-				DEVELOPMENT_TEAM = Z77T7JBU49;
+				DEVELOPMENT_TEAM = HZG7U5984A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CineHub/Info.plist;
@@ -622,7 +626,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CineHub/Preview Content\"";
-				DEVELOPMENT_TEAM = Z77T7JBU49;
+				DEVELOPMENT_TEAM = HZG7U5984A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CineHub/Info.plist;

@@ -12,6 +12,8 @@ class MovieDetailsModel: ObservableObject {
     @Published var onError = false
     @Published var genres: [String] = []
     @Published var director: String?
+    @Published var runtime: String?
+    @Published var rottenTomatoesScore: String?
     
     let movieId: Int
     let title: String
@@ -38,6 +40,7 @@ class MovieDetailsModel: ObservableObject {
         self.apiClient = apiClient
         
         getMovieDetails()
+        getRottenTomatoesScore()
     }
     
     private func getMovieDetails() {
@@ -46,15 +49,42 @@ class MovieDetailsModel: ObservableObject {
                 onError = false
                 let details = try await apiClient.getDetails(movieId)
                 self.genres = details.genres.map { $0.name }
-                
                 self.director = details.credits.crew.first { $0.job == "Director" }?.name
+                
+                self.runtime = details.runtime.flatMap {
+                    let hours = $0 / 60
+                    let mins = $0 % 60
+                    return "\(hours)h \(mins)mins"
+                }
             } catch {
                 print("Error getting details for movie '\(title)': \(error)")
                 onError = true
             }
         }
     }
+    
+    private func getRottenTomatoesScore() {
+        Task { @MainActor in
+            guard let rottenTitle = removeNonAlphabeticCharacters(from: title) else { return }
+            
+            print(rottenTitle)
+            
+            let urlString = "https://www.rottentomatoes.com/m/\(rottenTitle)"
+            guard let url = URL(string: urlString) else { return }
+            
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let html = String(data: data, encoding: .utf8),
+               let percentage = extractPercentage(from: html) {
+                rottenTomatoesScore = percentage
+            }
+        }
+    }
 }
+
+
+
+
+
 
 extension MovieDetailsModel {
     static let preview = MovieDetailsModel(movieId: 122917,

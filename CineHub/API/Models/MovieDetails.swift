@@ -10,5 +10,6 @@ import Foundation
 struct MovieDetails: Decodable {
     let budget: Int?
     let genres: [Genre]
+    let runtime: Int?
     let credits: Credits
 }

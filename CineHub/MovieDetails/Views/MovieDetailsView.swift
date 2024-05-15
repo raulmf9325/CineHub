@@ -19,8 +19,14 @@ struct MovieDetailsView: View {
                 HStack(alignment: .top) {
                     ThumbImage()
                         .offset(y: -60)
-                    TitleText()
-                        .padding()
+                    VStack(alignment: .leading, spacing: 10) {
+                        TitleText()
+                        HStack(spacing: 20) {
+                            RuntimeText()
+                            RottenTomatoesScore()
+                        }
+                    }
+                    .padding()
                     Spacer()
                 }
                 .padding(.leading, 30)
@@ -43,7 +49,7 @@ struct MovieDetailsView: View {
                 ToolBar()
                 Spacer()
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 25)
         .toolbar(.hidden)
         }
     }
@@ -71,6 +77,25 @@ struct MovieDetailsView: View {
             .font(AppTheme.Typography.helvetica18)
             .foregroundStyle(.white)
     }
+    
+    @ViewBuilder
+    func RuntimeText() -> some View {
+        if let runtime = model.runtime {
+            Text(runtime)
+                .font(AppTheme.Typography.helvetica15)
+                .foregroundStyle(.white)
+        }
+    }
+    
+    @ViewBuilder
+    func RottenTomatoesScore() -> some View {
+        if let score = model.rottenTomatoesScore {
+            Text(score)
+                .font(AppTheme.Typography.helvetica15)
+                .foregroundStyle(.white)
+        }
+    }
+
     
     func OverviewText() -> some View {
         Text(model.overview)
