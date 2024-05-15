@@ -15,6 +15,7 @@ class MovieDetailsModel: ObservableObject {
     @Published var runtime: String?
     @Published var rottenTomatoesScore: String?
     @Published var cast: [CastMember] = []
+    @Published var trailerURLString: String?
     
     let movieId: Int
     let title: String
@@ -42,6 +43,7 @@ class MovieDetailsModel: ObservableObject {
         
         getMovieDetails()
         getRottenTomatoesScore()
+        getMovieVideos()
     }
     
     private func getMovieDetails() {
@@ -60,6 +62,26 @@ class MovieDetailsModel: ObservableObject {
                 }
             } catch {
                 print("Error getting details for movie '\(title)': \(error)")
+                onError = true
+            }
+        }
+    }
+    
+    private func getMovieVideos() {
+        Task(priority: .userInitiated) { @MainActor in
+            do {
+                onError = false
+                let videos = try await apiClient.getVideos(movieId)
+                
+                let video = videos.first { $0.name == "Official Trailer" }
+                    ?? videos.first { $0.name?.contains("Trailer") == true }
+                    ?? videos.first
+                
+                self.trailerURLString = video
+                    .flatMap { video in video.key }
+                    .flatMap { key in "https://www.youtube.com/embed/\(key)" }
+            } catch {
+                print("Error getting videos for movie '\(title)': \(error)")
                 onError = true
             }
         }

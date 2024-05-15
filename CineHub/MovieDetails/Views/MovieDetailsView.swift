@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct MovieDetailsView: View {
     @ObservedObject var model: MovieDetailsModel
     @Environment(\.dismiss) var dismiss
+    @State private var isShowingSheet: Sheet?
     
     var body: some View {
         ZStack {
@@ -30,14 +31,15 @@ struct MovieDetailsView: View {
                     Spacer()
                 }
                 .padding(.leading, 30)
-                            
+                
                 VStack(alignment: .leading, spacing: 8) {
                     GenresText()
                     ReleaseDateText()
                     DirectorText()
+                    WatchTrailerViewButton()
+                        .padding(.top, 1)
                     OverviewText()
                         .padding(.top)
-                    
                     CastView()
                         .padding(.top)
                 }
@@ -45,7 +47,6 @@ struct MovieDetailsView: View {
                 .padding(.leading, 30)
                 .padding(.trailing)
             }
-            .background(Color.black)
             .ignoresSafeArea()
             
             VStack {
@@ -53,7 +54,25 @@ struct MovieDetailsView: View {
                 Spacer()
             }
             .padding(.horizontal, 25)
-        .toolbar(.hidden)
+            .toolbar(.hidden)
+        }
+        .background(Color.black.ignoresSafeArea())
+        .fullScreenCover(item: $isShowingSheet) { sheet in
+            switch sheet {
+            case .movieTrailer(let urlString):
+                PlayTrailerView(urlString: urlString)
+            }
+        }
+    }
+    
+    enum Sheet: Identifiable {
+        case movieTrailer(String)
+        
+        var id: String {
+            switch self {
+            case .movieTrailer(let urlString):
+                return urlString
+            }
         }
     }
     
@@ -105,7 +124,7 @@ struct MovieDetailsView: View {
             }
         }
     }
-
+    
     @ViewBuilder
     func OverviewText() -> some View {
         if !model.overview.isEmpty {
@@ -191,6 +210,25 @@ struct MovieDetailsView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
+    @ViewBuilder
+    func WatchTrailerViewButton() -> some View {
+        if let trailerURLString = model.trailerURLString {
+            Button(action: {
+                self.isShowingSheet = .movieTrailer(trailerURLString)
+            }) {
+                HStack {
+                    Image(systemName: "play.circle")
+                        .foregroundStyle(.red)
+                        .font(.title2)
+                    
+                    Text("Watch trailer")
+                        .font(AppTheme.Typography.helvetica16)
+                        .foregroundStyle(.red)
+                }
+            }
+        }
+    }
+    
     func CastView() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 30) {
@@ -244,6 +282,8 @@ struct MovieDetailsView: View {
         return formatter.string(from: date)
     }
 }
+
+
 
 #Preview {
     MovieDetailsView(model: .preview)

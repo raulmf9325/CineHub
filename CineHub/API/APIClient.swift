@@ -11,13 +11,15 @@ struct APIClient {
     var getMovieList: (MovieList, Int) async throws -> [Movie]
     var searchMovie: (String, Int) async throws -> [Movie]
     var getDetails: (Int) async throws -> MovieDetails
+    var getVideos: (Int) async throws -> [MovieVideo]
 }
 
 extension APIClient {
     static let live: APIClient = APIClient(
         getMovieList: getMovieList(list:page:),
         searchMovie: searchMovie(_:page:),
-        getDetails: getDetails(_:)
+        getDetails: getDetails(_:),
+        getVideos: getVideos(_:)
     )
 }
 
@@ -53,6 +55,16 @@ private func getDetails(_ movieId: Int) async throws -> MovieDetails {
     let (data, _) = try await fetchData(request)
     let decoder = JSONDecoder()
     return try decoder.decode(MovieDetails.self, from: data)
+}
+
+private func getVideos(_ movieId: Int) async throws -> [MovieVideo] {
+    let urlString = "https://api.themoviedb.org/3/movie/\(movieId)/videos?language=en-US"
+    let request = try urlRequest(for: urlString)
+    let (data, _) = try await fetchData(request)
+    let decoder = JSONDecoder()
+    return try decoder
+        .decode(VideosResponse.self, from: data)
+        .results
 }
 
 private func urlRequest(for urlString: String) throws -> URLRequest {
