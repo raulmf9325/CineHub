@@ -25,6 +25,8 @@ struct MovieDetailsView: View {
                         HStack(spacing: 20) {
                             RuntimeText()
                             RottenTomatoesScore()
+                                .transition(.move(edge: .trailing))
+                                .animation(.easeInOut, value: model.rottenTomatoesScore)
                         }
                     }
                     .padding()
@@ -34,8 +36,12 @@ struct MovieDetailsView: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     GenresText()
+                        .transition(.move(edge: .leading))
+                        .animation(.easeInOut, value: model.genres)
                     ReleaseDateText()
                     DirectorText()
+                        .transition(.move(edge: .leading))
+                        .animation(.easeInOut, value: model.director)
                     WatchTrailerViewButton()
                         .padding(.top, 1)
                     OverviewText()
