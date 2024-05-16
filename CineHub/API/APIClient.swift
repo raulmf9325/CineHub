@@ -12,6 +12,7 @@ struct APIClient {
     var searchMovie: (String, Int) async throws -> [Movie]
     var getDetails: (Int) async throws -> MovieDetails
     var getVideos: (Int) async throws -> [MovieVideo]
+    var getRecommendations: (Int, Int) async throws -> [Movie]
 }
 
 extension APIClient {
@@ -19,7 +20,8 @@ extension APIClient {
         getMovieList: getMovieList(list:page:),
         searchMovie: searchMovie(_:page:),
         getDetails: getDetails(_:),
-        getVideos: getVideos(_:)
+        getVideos: getVideos(_:),
+        getRecommendations: getRecommendations(_:page:)
     )
 }
 
@@ -55,6 +57,13 @@ private func getDetails(_ movieId: Int) async throws -> MovieDetails {
     let (data, _) = try await fetchData(request)
     let decoder = JSONDecoder()
     return try decoder.decode(MovieDetails.self, from: data)
+}
+
+private func getRecommendations(_ movieId: Int, page: Int) async throws -> [Movie] {
+    let urlString = "https://api.themoviedb.org/3/movie/\(movieId)/recommendations?language=en-US&page=\(page)"
+    let request = try urlRequest(for: urlString)
+    let (data, _) = try await fetchData(request)
+    return try decodeMovieList(data)
 }
 
 private func getVideos(_ movieId: Int) async throws -> [MovieVideo] {

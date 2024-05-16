@@ -42,6 +42,8 @@ struct MovieDetailsView: View {
                         .padding(.top)
                     CastView()
                         .padding(.top)
+                    RecommendationsView()
+                        .padding(.vertical, 30)
                 }
                 .offset(y: -45)
                 .padding(.leading, 30)
@@ -240,6 +242,7 @@ struct MovieDetailsView: View {
                             .font(AppTheme.Typography.helvetica12)
                             .foregroundStyle(.gray)
                             .padding(.top, 1)
+                            .frame(width: 100)
                         
                         Text("as")
                             .font(AppTheme.Typography.helvetica12)
@@ -248,7 +251,48 @@ struct MovieDetailsView: View {
                         Text(castMember.character)
                             .font(AppTheme.Typography.helvetica12)
                             .foregroundStyle(.white)
+                            .frame(width: 100)
                     }
+                }
+            }
+        }
+    }
+    
+    func RecommendationsView() -> some View {
+        VStack(alignment: .leading, spacing: 30) {
+            Text("Recommended")
+                .font(AppTheme.Typography.helvetica16)
+                .bold()
+                .foregroundStyle(.white)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 30) {
+                    ForEach(model.recommendations) { movie in
+                        NavigationLink(value: movie) {
+                            VStack(alignment: .center) {
+                                RecommendedMovieImage(movie.poster_path)
+                                
+                                Text(movie.title)
+                                    .font(AppTheme.Typography.helvetica12)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundStyle(.gray)
+                                    .padding(.top, 1)
+                                    .frame(width: 100)
+                                    .lineLimit(nil)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.bottom)
+                            }
+                        }
+                    }
+                }
+                .navigationDestination(for: Movie.self) { movie in
+                    MovieDetailsView(model: MovieDetailsModel(movieId: movie.id,
+                                                              title: movie.title,
+                                                              overview: movie.overview,
+                                                              posterPath: movie.poster_path,
+                                                              backdropPath: movie.backdrop_path,
+                                                              releaseDate: movie.release_date,
+                                                              apiClient: .live))
                 }
             }
         }
@@ -274,6 +318,19 @@ struct MovieDetailsView: View {
                 .foregroundStyle(.white)
         }
     }
+    
+    func RecommendedMovieImage(_ posterPath: String) -> some View {
+        WebImage(url: URL(string: "https://image.tmdb.org/t/p/w300/\(posterPath)")) { image in
+            image.resizable()
+                .aspectRatio(contentMode: .fit)
+                .scaledToFill()
+        } placeholder: {
+            ShimmerView()
+        }
+        .frame(width: 90, height: 110)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+        
     
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()

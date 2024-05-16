@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import IdentifiedCollections
 
 @MainActor
 class MovieDetailsModel: ObservableObject {
@@ -16,6 +17,7 @@ class MovieDetailsModel: ObservableObject {
     @Published var rottenTomatoesScore: String?
     @Published var cast: [CastMember] = []
     @Published var trailerURLString: String?
+    @Published var recommendations: IdentifiedArrayOf<Movie> = []
     
     let movieId: Int
     let title: String
@@ -44,6 +46,7 @@ class MovieDetailsModel: ObservableObject {
         getMovieDetails()
         getRottenTomatoesScore()
         getMovieVideos()
+        getRecommendations()
     }
     
     private func getMovieDetails() {
@@ -60,6 +63,19 @@ class MovieDetailsModel: ObservableObject {
                     let mins = $0 % 60
                     return "\(hours)h \(mins)mins"
                 }
+            } catch {
+                print("Error getting details for movie '\(title)': \(error)")
+                onError = true
+            }
+        }
+    }
+    
+    private func getRecommendations() {
+        Task(priority: .userInitiated) { @MainActor in
+            do {
+                onError = false
+                let recommendations = try await apiClient.getRecommendations(movieId, 1)
+                self.recommendations = IdentifiedArray(uniqueElements: recommendations)
             } catch {
                 print("Error getting details for movie '\(title)': \(error)")
                 onError = true

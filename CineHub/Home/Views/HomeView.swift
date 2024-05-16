@@ -42,7 +42,10 @@ struct HomeView: View {
                             MovieDetailsView(model: MovieDetailsModel(movieId: movie.id,
                                                                       title: movie.title,
                                                                       overview: movie.overview,
-                                                                      posterPath: movie.poster_path, backdropPath: movie.backdrop_path, releaseDate: movie.release_date, apiClient: .live))
+                                                                      posterPath: movie.poster_path, 
+                                                                      backdropPath: movie.backdrop_path,
+                                                                      releaseDate: movie.release_date,
+                                                                      apiClient: .live))
                         }
                         
                         if model.onError {
