@@ -27,16 +27,13 @@
 		4F8696E32BF2BDB900110AE1 /* CrewMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8696E22BF2BDB900110AE1 /* CrewMember.swift */; };
 		4F8696E52BF2BE2200110AE1 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8696E42BF2BE2200110AE1 /* Credits.swift */; };
 		4F8696EA2BF2CA7B00110AE1 /* MovieDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8696E92BF2CA7B00110AE1 /* MovieDetailsModel.swift */; };
+		4F8E2DE52BF6B80600D69A83 /* MovieHiveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E2DE42BF6B80600D69A83 /* MovieHiveApp.swift */; };
 		4F8EA99A2BF16F5F00640270 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EA9992BF16F5F00640270 /* HeaderView.swift */; };
 		4FAAFCDA2BF4F34F007C9025 /* PlayTrailerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAFCD92BF4F34F007C9025 /* PlayTrailerView.swift */; };
 		4FAAFCDC2BF4F904007C9025 /* VideosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAFCDB2BF4F904007C9025 /* VideosResponse.swift */; };
 		4FD96E202BF5AC4B006C690A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD96E1F2BF5AC4B006C690A /* LaunchScreen.storyboard */; };
-		4FE1745F2BE9BB32006C950C /* CineHubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1745E2BE9BB32006C950C /* CineHubApp.swift */; };
 		4FE174632BE9BB33006C950C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE174622BE9BB33006C950C /* Assets.xcassets */; };
 		4FE174662BE9BB33006C950C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE174652BE9BB33006C950C /* Preview Assets.xcassets */; };
-		4FE174702BE9BB33006C950C /* CineHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1746F2BE9BB33006C950C /* CineHubTests.swift */; };
-		4FE1747A2BE9BB33006C950C /* CineHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE174792BE9BB33006C950C /* CineHubUITests.swift */; };
-		4FE1747C2BE9BB33006C950C /* CineHubUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1747B2BE9BB33006C950C /* CineHubUITestsLaunchTests.swift */; };
 		4FE1748A2BE9BCB3006C950C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE174892BE9BCB3006C950C /* APIClient.swift */; };
 		4FE1748E2BE9C38D006C950C /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1748D2BE9C38C006C950C /* Secrets.swift */; };
 /* End PBXBuildFile section */
@@ -78,19 +75,16 @@
 		4F8696E22BF2BDB900110AE1 /* CrewMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewMember.swift; sourceTree = "<group>"; };
 		4F8696E42BF2BE2200110AE1 /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		4F8696E92BF2CA7B00110AE1 /* MovieDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsModel.swift; sourceTree = "<group>"; };
+		4F8E2DE42BF6B80600D69A83 /* MovieHiveApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieHiveApp.swift; sourceTree = "<group>"; };
 		4F8EA9992BF16F5F00640270 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		4FAAFCD92BF4F34F007C9025 /* PlayTrailerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTrailerView.swift; sourceTree = "<group>"; };
 		4FAAFCDB2BF4F904007C9025 /* VideosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosResponse.swift; sourceTree = "<group>"; };
 		4FD96E1F2BF5AC4B006C690A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4FE1745B2BE9BB32006C950C /* CineHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FE1745E2BE9BB32006C950C /* CineHubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineHubApp.swift; sourceTree = "<group>"; };
+		4FE1745B2BE9BB32006C950C /* MovieHive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieHive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE174622BE9BB33006C950C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FE174652BE9BB33006C950C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4FE1746B2BE9BB33006C950C /* CineHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CineHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FE1746F2BE9BB33006C950C /* CineHubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineHubTests.swift; sourceTree = "<group>"; };
-		4FE174752BE9BB33006C950C /* CineHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CineHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FE174792BE9BB33006C950C /* CineHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineHubUITests.swift; sourceTree = "<group>"; };
-		4FE1747B2BE9BB33006C950C /* CineHubUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineHubUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4FE1746B2BE9BB33006C950C /* MovieHiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieHiveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FE174752BE9BB33006C950C /* MovieHiveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieHiveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE174892BE9BCB3006C950C /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4FE1748D2BE9C38C006C950C /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,9 +209,7 @@
 		4FE174522BE9BB32006C950C = {
 			isa = PBXGroup;
 			children = (
-				4FE1745D2BE9BB32006C950C /* CineHub */,
-				4FE1746E2BE9BB33006C950C /* CineHubTests */,
-				4FE174782BE9BB33006C950C /* CineHubUITests */,
+				4FE1745D2BE9BB32006C950C /* MovieHive */,
 				4FE1745C2BE9BB32006C950C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -225,26 +217,26 @@
 		4FE1745C2BE9BB32006C950C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FE1745B2BE9BB32006C950C /* CineHub.app */,
-				4FE1746B2BE9BB33006C950C /* CineHubTests.xctest */,
-				4FE174752BE9BB33006C950C /* CineHubUITests.xctest */,
+				4FE1745B2BE9BB32006C950C /* MovieHive.app */,
+				4FE1746B2BE9BB33006C950C /* MovieHiveTests.xctest */,
+				4FE174752BE9BB33006C950C /* MovieHiveUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4FE1745D2BE9BB32006C950C /* CineHub */ = {
+		4FE1745D2BE9BB32006C950C /* MovieHive */ = {
 			isa = PBXGroup;
 			children = (
 				4F6BB4132BEB1E9700F8006C /* Info.plist */,
 				4F6BB40B2BEAD97A00F8006C /* Home */,
 				4F8696E62BF2BEDE00110AE1 /* MovieDetails */,
 				4FE174882BE9BC98006C950C /* API */,
-				4FE1745E2BE9BB32006C950C /* CineHubApp.swift */,
 				4FE174622BE9BB33006C950C /* Assets.xcassets */,
+				4F8E2DE42BF6B80600D69A83 /* MovieHiveApp.swift */,
 				4FE174642BE9BB33006C950C /* Preview Content */,
 				4FD96E1F2BF5AC4B006C690A /* LaunchScreen.storyboard */,
 			);
-			path = CineHub;
+			path = MovieHive;
 			sourceTree = "<group>";
 		};
 		4FE174642BE9BB33006C950C /* Preview Content */ = {
@@ -253,23 +245,6 @@
 				4FE174652BE9BB33006C950C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4FE1746E2BE9BB33006C950C /* CineHubTests */ = {
-			isa = PBXGroup;
-			children = (
-				4FE1746F2BE9BB33006C950C /* CineHubTests.swift */,
-			);
-			path = CineHubTests;
-			sourceTree = "<group>";
-		};
-		4FE174782BE9BB33006C950C /* CineHubUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4FE174792BE9BB33006C950C /* CineHubUITests.swift */,
-				4FE1747B2BE9BB33006C950C /* CineHubUITestsLaunchTests.swift */,
-			);
-			path = CineHubUITests;
 			sourceTree = "<group>";
 		};
 		4FE174882BE9BC98006C950C /* API */ = {
@@ -285,9 +260,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FE1745A2BE9BB32006C950C /* CineHub */ = {
+		4FE1745A2BE9BB32006C950C /* MovieHive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FE1747F2BE9BB33006C950C /* Build configuration list for PBXNativeTarget "CineHub" */;
+			buildConfigurationList = 4FE1747F2BE9BB33006C950C /* Build configuration list for PBXNativeTarget "MovieHive" */;
 			buildPhases = (
 				4FE174572BE9BB32006C950C /* Sources */,
 				4FE174582BE9BB32006C950C /* Frameworks */,
@@ -297,18 +272,18 @@
 			);
 			dependencies = (
 			);
-			name = CineHub;
+			name = MovieHive;
 			packageProductDependencies = (
 				4F6BB40F2BEADE9600F8006C /* SDWebImageSwiftUI */,
 				4F12B9ED2BED75C4009B5EED /* IdentifiedCollections */,
 			);
 			productName = CineHub;
-			productReference = 4FE1745B2BE9BB32006C950C /* CineHub.app */;
+			productReference = 4FE1745B2BE9BB32006C950C /* MovieHive.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4FE1746A2BE9BB33006C950C /* CineHubTests */ = {
+		4FE1746A2BE9BB33006C950C /* MovieHiveTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FE174822BE9BB33006C950C /* Build configuration list for PBXNativeTarget "CineHubTests" */;
+			buildConfigurationList = 4FE174822BE9BB33006C950C /* Build configuration list for PBXNativeTarget "MovieHiveTests" */;
 			buildPhases = (
 				4FE174672BE9BB33006C950C /* Sources */,
 				4FE174682BE9BB33006C950C /* Frameworks */,
@@ -319,14 +294,14 @@
 			dependencies = (
 				4FE1746D2BE9BB33006C950C /* PBXTargetDependency */,
 			);
-			name = CineHubTests;
+			name = MovieHiveTests;
 			productName = CineHubTests;
-			productReference = 4FE1746B2BE9BB33006C950C /* CineHubTests.xctest */;
+			productReference = 4FE1746B2BE9BB33006C950C /* MovieHiveTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4FE174742BE9BB33006C950C /* CineHubUITests */ = {
+		4FE174742BE9BB33006C950C /* MovieHiveUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FE174852BE9BB33006C950C /* Build configuration list for PBXNativeTarget "CineHubUITests" */;
+			buildConfigurationList = 4FE174852BE9BB33006C950C /* Build configuration list for PBXNativeTarget "MovieHiveUITests" */;
 			buildPhases = (
 				4FE174712BE9BB33006C950C /* Sources */,
 				4FE174722BE9BB33006C950C /* Frameworks */,
@@ -337,9 +312,9 @@
 			dependencies = (
 				4FE174772BE9BB33006C950C /* PBXTargetDependency */,
 			);
-			name = CineHubUITests;
+			name = MovieHiveUITests;
 			productName = CineHubUITests;
-			productReference = 4FE174752BE9BB33006C950C /* CineHubUITests.xctest */;
+			productReference = 4FE174752BE9BB33006C950C /* MovieHiveUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -365,7 +340,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4FE174562BE9BB32006C950C /* Build configuration list for PBXProject "CineHub" */;
+			buildConfigurationList = 4FE174562BE9BB32006C950C /* Build configuration list for PBXProject "MovieHive" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -382,9 +357,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FE1745A2BE9BB32006C950C /* CineHub */,
-				4FE1746A2BE9BB33006C950C /* CineHubTests */,
-				4FE174742BE9BB33006C950C /* CineHubUITests */,
+				4FE1745A2BE9BB32006C950C /* MovieHive */,
+				4FE1746A2BE9BB33006C950C /* MovieHiveTests */,
+				4FE174742BE9BB33006C950C /* MovieHiveUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -424,7 +399,6 @@
 				4FAAFCDC2BF4F904007C9025 /* VideosResponse.swift in Sources */,
 				4FE1748E2BE9C38D006C950C /* Secrets.swift in Sources */,
 				4F8696DF2BF2BC4700110AE1 /* MovieDetails.swift in Sources */,
-				4FE1745F2BE9BB32006C950C /* CineHubApp.swift in Sources */,
 				4F78FFF52BEFF4960093C385 /* MovieList.swift in Sources */,
 				4F78FFF82BEFF4C40093C385 /* BindingExtension.swift in Sources */,
 				4FAAFCDA2BF4F34F007C9025 /* PlayTrailerView.swift in Sources */,
@@ -432,6 +406,7 @@
 				4F6BB4162BEB200B00F8006C /* HomeModel.swift in Sources */,
 				4F8696DB2BF2A7E700110AE1 /* StretchyHeaderGeometry.swift in Sources */,
 				4F6BB40D2BEAD98300F8006C /* HomeView.swift in Sources */,
+				4F8E2DE52BF6B80600D69A83 /* MovieHiveApp.swift in Sources */,
 				4F8696EA2BF2CA7B00110AE1 /* MovieDetailsModel.swift in Sources */,
 				4F8696DD2BF2BC1900110AE1 /* Genre.swift in Sources */,
 				4F6BB41B2BEB205700F8006C /* ShimmerView.swift in Sources */,
@@ -452,7 +427,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FE174702BE9BB33006C950C /* CineHubTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,8 +434,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FE1747A2BE9BB33006C950C /* CineHubUITests.swift in Sources */,
-				4FE1747C2BE9BB33006C950C /* CineHubUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,12 +442,12 @@
 /* Begin PBXTargetDependency section */
 		4FE1746D2BE9BB33006C950C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FE1745A2BE9BB32006C950C /* CineHub */;
+			target = 4FE1745A2BE9BB32006C950C /* MovieHive */;
 			targetProxy = 4FE1746C2BE9BB33006C950C /* PBXContainerItemProxy */;
 		};
 		4FE174772BE9BB33006C950C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FE1745A2BE9BB32006C950C /* CineHub */;
+			target = 4FE1745A2BE9BB32006C950C /* MovieHive */;
 			targetProxy = 4FE174762BE9BB33006C950C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -607,14 +579,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CineHub/Preview Content\"";
-				DEVELOPMENT_TEAM = HZG7U5984A;
+				DEVELOPMENT_ASSET_PATHS = "\"MovieHive/Preview Content\"";
+				DEVELOPMENT_TEAM = 74Q66W826L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CineHub/Info.plist;
+				INFOPLIST_FILE = MovieHive/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MovieHive;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -622,7 +596,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HOME.CineHub;
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.moviehive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -637,14 +611,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CineHub/Preview Content\"";
-				DEVELOPMENT_TEAM = HZG7U5984A;
+				DEVELOPMENT_ASSET_PATHS = "\"MovieHive/Preview Content\"";
+				DEVELOPMENT_TEAM = 74Q66W826L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CineHub/Info.plist;
+				INFOPLIST_FILE = MovieHive/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MovieHive;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -652,7 +628,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HOME.CineHub;
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.moviehive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -676,7 +652,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CineHub.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CineHub";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieHive.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieHive";
 			};
 			name = Debug;
 		};
@@ -696,7 +672,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CineHub.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CineHub";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieHive.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieHive";
 			};
 			name = Release;
 		};
@@ -739,7 +715,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FE174562BE9BB32006C950C /* Build configuration list for PBXProject "CineHub" */ = {
+		4FE174562BE9BB32006C950C /* Build configuration list for PBXProject "MovieHive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FE1747D2BE9BB33006C950C /* Debug */,
@@ -748,7 +724,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FE1747F2BE9BB33006C950C /* Build configuration list for PBXNativeTarget "CineHub" */ = {
+		4FE1747F2BE9BB33006C950C /* Build configuration list for PBXNativeTarget "MovieHive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FE174802BE9BB33006C950C /* Debug */,
@@ -757,7 +733,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FE174822BE9BB33006C950C /* Build configuration list for PBXNativeTarget "CineHubTests" */ = {
+		4FE174822BE9BB33006C950C /* Build configuration list for PBXNativeTarget "MovieHiveTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FE174832BE9BB33006C950C /* Debug */,
@@ -766,7 +742,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FE174852BE9BB33006C950C /* Build configuration list for PBXNativeTarget "CineHubUITests" */ = {
+		4FE174852BE9BB33006C950C /* Build configuration list for PBXNativeTarget "MovieHiveUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FE174862BE9BB33006C950C /* Debug */,
