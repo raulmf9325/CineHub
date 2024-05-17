@@ -10,5 +10,6 @@ import Foundation
 struct CrewMember: Decodable {
     let name: String
     let job: String
+    let id: Int
     let profile_path: String?
 }

@@ -292,15 +292,6 @@ struct MovieDetailsView: View {
                         }
                     }
                 }
-                .navigationDestination(for: Movie.self) { movie in
-                    MovieDetailsView(model: MovieDetailsModel(movieId: movie.id,
-                                                              title: movie.title,
-                                                              overview: movie.overview,
-                                                              posterPath: movie.poster_path,
-                                                              backdropPath: movie.backdrop_path,
-                                                              releaseDate: movie.release_date,
-                                                              apiClient: .live))
-                }
             }
         }
     }

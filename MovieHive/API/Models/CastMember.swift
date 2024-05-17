@@ -10,7 +10,6 @@ import Foundation
 struct CastMember: Decodable, Identifiable {
     let name: String
     let character: String
+    let id: Int
     let profile_path: String?
-    
-    var id: String { name }
 }
