@@ -94,7 +94,12 @@ class HomeModel: ObservableObject {
         }
     }
     
-    func refresh(_ list: MovieList) {
+    func onPullToRefresh() {
+        guard !isSearchingMovie else { return }
+        refresh(selectedList)
+    }
+    
+    private func refresh(_ list: MovieList) {
         Task { @MainActor in
             do {
                 onError = false

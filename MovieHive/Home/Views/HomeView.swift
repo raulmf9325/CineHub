@@ -62,7 +62,7 @@ struct HomeView: View {
                         }
                     }
                     .refreshable {
-                        model.refresh(model.selectedList)
+                        model.onPullToRefresh()
                     }
                     .padding(.top)
                 }
