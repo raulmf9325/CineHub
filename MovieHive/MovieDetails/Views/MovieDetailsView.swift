@@ -266,11 +266,12 @@ struct MovieDetailsView: View {
     
     func RecommendationsView() -> some View {
         VStack(alignment: .leading, spacing: 30) {
-            Text("Recommended")
-                .font(AppTheme.Typography.helvetica16)
-                .bold()
-                .foregroundStyle(.white)
-            
+            if !model.recommendations.isEmpty {
+                Text("Recommended")
+                    .font(AppTheme.Typography.helvetica16)
+                    .bold()
+                    .foregroundStyle(.white)
+            }
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 30) {
                     ForEach(model.recommendations) { movie in
