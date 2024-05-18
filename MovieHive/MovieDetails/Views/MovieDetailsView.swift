@@ -100,6 +100,7 @@ struct MovieDetailsView: View {
                 Spacer()
             }
         }
+        .animation(nil)
     }
     
     func TitleText() -> some View {
@@ -183,7 +184,7 @@ struct MovieDetailsView: View {
                 HStack {
                     Text("Director:")
                         .font(AppTheme.Typography.helvetica16Bold)
-                    Text(director)
+                    Text(director.name)
                         .font(AppTheme.Typography.helvetica15)
                         .foregroundStyle(.gray)
                 }

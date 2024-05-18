@@ -12,7 +12,7 @@ import IdentifiedCollections
 class MovieDetailsModel: ObservableObject {
     @Published var onError = false
     @Published var genres: [String] = []
-    @Published var director: String?
+    @Published var director: CrewMember?
     @Published var runtime: String?
     @Published var rottenTomatoesScore: String?
     @Published var cast: [CastMember] = []
@@ -55,7 +55,7 @@ class MovieDetailsModel: ObservableObject {
                 onError = false
                 let details = try await apiClient.getDetails(movieId)
                 self.genres = details.genres.map { $0.name }
-                self.director = details.credits.crew.first { $0.job == "Director" }?.name
+                self.director = details.credits.crew.first { $0.job == "Director" }
                 self.cast = details.credits.cast
                 
                 self.runtime = details.runtime.flatMap {
@@ -129,7 +129,8 @@ class MovieDetailsModel: ObservableObject {
     }
     
     func onDirectorButtonTapped() {
-        FlutterDependencies.shared.presentFlutterModule()
+        guard let id = director?.id else { return }
+        FlutterDependencies.shared.presentFlutterModule(route: .people(id))
     }
 }
 

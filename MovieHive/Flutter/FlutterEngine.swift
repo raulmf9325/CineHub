@@ -10,18 +10,23 @@ import Flutter
 import FlutterPluginRegistrant
 
 class FlutterDependencies: ObservableObject {
-    private let flutterEngine = FlutterEngine(name: "flutter-engine")
-    
-    private init() {
-        flutterEngine.run()
-        GeneratedPluginRegistrant.register(with: self.flutterEngine)
-    }
+    private init() {}
     
     static let shared = FlutterDependencies()
 }
 
 extension FlutterDependencies {
-    func presentFlutterModule() {
+    enum Route {
+        case people(Int)
+    }
+    
+    func presentFlutterModule(route: Route) {
+        let flutterEngine = FlutterEngine(name: "flutter-engine")
+        let initialRoute = makeRouteString(route)
+        flutterEngine.run(withEntrypoint: "main", initialRoute: initialRoute)
+        
+        GeneratedPluginRegistrant.register(with: flutterEngine)
+        
         guard let windowScene = UIApplication.shared.connectedScenes
             .first(where: { $0.activationState == .foregroundActive && $0 is UIWindowScene }) as? UIWindowScene,
               let window = windowScene.windows.first(where: \.isKeyWindow),
@@ -36,5 +41,12 @@ extension FlutterDependencies {
         flutterViewController.isViewOpaque = false
         
         rootViewController.present(flutterViewController, animated: true)
+    }
+    
+    private func makeRouteString(_ route: Route) -> String {
+        switch route {
+        case .people(let id):
+            return "/people?id=\(id)"
+        }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CrewMember: Decodable {
+struct CrewMember: Decodable, Equatable {
     let name: String
     let job: String
     let id: Int

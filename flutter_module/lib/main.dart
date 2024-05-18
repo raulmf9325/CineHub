@@ -15,22 +15,42 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: '/people?id=108',
+      onGenerateRoute: _onGenerateRoute,
     );
+  }
+
+  Route<dynamic> _onGenerateRoute(RouteSettings settings) {
+    final Uri uri = Uri.parse(settings.name ?? '');
+    final path = uri.path;
+    final queryParams = uri.queryParameters;
+
+    switch (path) {
+      case '/people':
+        final id = int.tryParse(queryParams['id'] ?? '') ?? 0;
+        return MaterialPageRoute(
+            builder: (_) => PeoplePage(
+                  id: id,
+                ));
+      default:
+        return MaterialPageRoute(
+            builder: (_) => const PeoplePage(
+                  id: 108,
+                ));
+    }
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class PeoplePage extends StatefulWidget {
+  const PeoplePage({super.key, required this.id});
 
-  final String title;
+  final int id;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PeoplePage> createState() => _PeoplePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  final id = 108;
+class _PeoplePageState extends State<PeoplePage> {
   String? name;
   String? birthday;
   String? biography;
@@ -42,12 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    getPeople(id);
+    getPeople(widget.id);
   }
 
   void getPeople(int id) async {
-    final apiClient = ApiClientLive.live;
-    final person = await apiClient.getDetails(id);
+    final person = await _apiClient.getDetails(id);
     setState(() {
       name = person.name;
       birthday = person.birthday;
