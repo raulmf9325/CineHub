@@ -3,7 +3,9 @@ class People {
       {required this.id,
       required this.name,
       required this.birthday,
-      required this.biography});
+      required this.biography,
+      required this.profilePath,
+      required this.birthPlace});
 
   factory People.fromJson(Map<String, dynamic> json) {
     return People(
@@ -11,6 +13,8 @@ class People {
       name: json['name'],
       birthday: json['birthday'],
       biography: json['biography'],
+      profilePath: json['profile_path'],
+      birthPlace: json['place_of_birth'],
     );
   }
 
@@ -18,4 +22,6 @@ class People {
   final String name;
   final String? birthday;
   final String? biography;
+  final String? birthPlace;
+  final String? profilePath;
 }

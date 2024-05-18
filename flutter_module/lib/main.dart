@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_module/API/api_client.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void main() => runApp(const MyApp());
 
@@ -29,53 +30,114 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final id = 108;
+  String? name;
+  String? birthday;
+  String? biography;
+  String? birthPlace;
+  String? profilePath;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  final _apiClient = ApiClientLive.live;
+
+  @override
+  void initState() {
+    super.initState();
+    getPeople(id);
   }
 
   void getPeople(int id) async {
     final apiClient = ApiClientLive.live;
-    final peter = await apiClient.getDetails(id);
-    print(peter.biography);
+    final person = await apiClient.getDetails(id);
+    setState(() {
+      name = person.name;
+      birthday = person.birthday;
+      biography = person.biography;
+      birthPlace = person.birthPlace;
+      profilePath = person.profilePath;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: [
-          IconButton(
-            onPressed: () => SystemNavigator.pop(animated: true),
-            icon: const Icon(Icons.exit_to_app),
-          ),
-        ],
-      ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        child: Stack(children: [
+          SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                profileImage(),
+                name == null
+                    ? const CircularProgressIndicator()
+                    : Text(
+                        'Name: $name',
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                        ),
+                      ),
+                birthday == null
+                    ? const CircularProgressIndicator()
+                    : Text(
+                        'Birthday: $birthday',
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                        ),
+                      ),
+                birthPlace == null
+                    ? const CircularProgressIndicator()
+                    : Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Text(
+                          'Place of Birth: $birthPlace',
+                          style: const TextStyle(
+                            fontSize: 19.0,
+                          ),
+                        ),
+                      ),
+                biography == null
+                    ? const CircularProgressIndicator()
+                    : Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          'Biography: $biography',
+                          style: const TextStyle(
+                            fontSize: 15.0,
+                          ),
+                        ),
+                      ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          SafeArea(
+            child: Row(
+              children: [
+                const Spacer(),
+                IconButton(
+                  onPressed: () => SystemNavigator.pop(animated: true),
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          getPeople(108);
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+          )
+        ]),
       ),
     );
+  }
+
+  Widget profileImage() {
+    if (profilePath != null) {
+      return CachedNetworkImage(
+        imageUrl: 'https://image.tmdb.org/t/p/w1280/$profilePath',
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            CircularProgressIndicator(value: downloadProgress.progress),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      );
+    } else {
+      return const CircularProgressIndicator();
+    }
   }
 }
