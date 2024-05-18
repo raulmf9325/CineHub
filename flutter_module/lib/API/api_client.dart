@@ -1,5 +1,5 @@
-import 'package:flutter_module/API/Models/people.dart';
-import 'package:flutter_module/API/secrets.dart';
+import 'package:flutter_module/api/Models/people.dart';
+import 'package:flutter_module/api/secrets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
