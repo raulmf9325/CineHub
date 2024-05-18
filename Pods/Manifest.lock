@@ -2,21 +2,37 @@ PODS:
   - Flutter (1.0.0)
   - FlutterPluginRegistrant (0.0.1):
     - Flutter
+    - path_provider_foundation
+    - sqflite
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - sqflite (0.0.3):
+    - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
   - Flutter (from `flutter_module/.ios/Flutter`)
   - FlutterPluginRegistrant (from `flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
+  - path_provider_foundation (from `flutter_module/.ios/.symlinks/plugins/path_provider_foundation/darwin`)
+  - sqflite (from `flutter_module/.ios/.symlinks/plugins/sqflite/darwin`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: flutter_module/.ios/Flutter
   FlutterPluginRegistrant:
     :path: flutter_module/.ios/Flutter/FlutterPluginRegistrant
+  path_provider_foundation:
+    :path: flutter_module/.ios/.symlinks/plugins/path_provider_foundation/darwin
+  sqflite:
+    :path: flutter_module/.ios/.symlinks/plugins/sqflite/darwin
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  FlutterPluginRegistrant: 0b732256b4829f9783c18c68e2f9adacc1536955
+  FlutterPluginRegistrant: 3e4a47b3c1520891c581e71b989147664777bbe9
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
 
 PODFILE CHECKSUM: a57594093e4671ca66ae2a8d4c66a338c51f69e6
 
-COCOAPODS: 1.15.0
+COCOAPODS: 1.15.2

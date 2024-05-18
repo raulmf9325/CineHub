@@ -127,9 +127,11 @@ class MovieDetailsModel: ObservableObject {
         guard let html = String(data: data, encoding: .utf8) else { return nil }
         return extractPercentage(from: html)
     }
+    
+    func onDirectorButtonTapped() {
+        FlutterDependencies.shared.presentFlutterModule()
+    }
 }
-
-
 
 
 

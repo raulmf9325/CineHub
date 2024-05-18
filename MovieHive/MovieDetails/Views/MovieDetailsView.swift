@@ -39,7 +39,7 @@ struct MovieDetailsView: View {
                         .transition(.move(edge: .leading))
                         .animation(.easeInOut, value: model.genres)
                     ReleaseDateText()
-                    DirectorText()
+                    DirectorButton()
                         .transition(.move(edge: .leading))
                         .animation(.easeInOut, value: model.director)
                     WatchTrailerViewButton()
@@ -177,16 +177,18 @@ struct MovieDetailsView: View {
     }
     
     @ViewBuilder
-    func DirectorText() -> some View {
+    func DirectorButton() -> some View {
         if let director = model.director {
-            HStack {
-                Text("Director:")
-                    .font(AppTheme.Typography.helvetica16Bold)
-                Text(director)
-                    .font(AppTheme.Typography.helvetica15)
-                    .foregroundStyle(.gray)
+            Button(action: model.onDirectorButtonTapped) {
+                HStack {
+                    Text("Director:")
+                        .font(AppTheme.Typography.helvetica16Bold)
+                    Text(director)
+                        .font(AppTheme.Typography.helvetica15)
+                        .foregroundStyle(.gray)
+                }
+                .foregroundStyle(.white)
             }
-            .foregroundStyle(.white)
         }
     }
     

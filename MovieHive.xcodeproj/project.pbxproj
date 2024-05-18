@@ -42,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		1F9A24B739EF852F78BBCDCF /* Pods-MovieHive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHive.release.xcconfig"; path = "Target Support Files/Pods-MovieHive/Pods-MovieHive.release.xcconfig"; sourceTree = "<group>"; };
+		4F1E4D212BF82AE100FF9909 /* FlutterPluginRegistrant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FlutterPluginRegistrant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2422902BF4462300099C08 /* MovieDetailsModel+StringMatching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailsModel+StringMatching.swift"; sourceTree = "<group>"; };
 		4F530D642BF6DE4E00212338 /* FlutterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngine.swift; sourceTree = "<group>"; };
 		4F5D16A32BED922700DF3561 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
@@ -252,6 +253,7 @@
 		FFCAA8747F55BC7AF8CDCB8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F1E4D212BF82AE100FF9909 /* FlutterPluginRegistrant.framework */,
 				7D8888A8A82522B24C47F30B /* Pods_MovieHive.framework */,
 			);
 			name = Frameworks;
@@ -270,6 +272,7 @@
 				4FE174582BE9BB32006C950C /* Frameworks */,
 				4FE174592BE9BB32006C950C /* Resources */,
 				C016F697346EDBA0CDDE9C54 /* [CP-User] Embed Flutter Build flutter_module Script */,
+				B3DC656A815C9A70E75138D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -366,6 +369,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/flutter_module/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh build";
+		};
+		B3DC656A815C9A70E75138D7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MovieHive/Pods-MovieHive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MovieHive/Pods-MovieHive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieHive/Pods-MovieHive-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		C016F697346EDBA0CDDE9C54 /* [CP-User] Embed Flutter Build flutter_module Script */ = {
 			isa = PBXShellScriptBuildPhase;

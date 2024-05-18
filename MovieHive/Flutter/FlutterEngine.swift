@@ -10,11 +10,31 @@ import Flutter
 import FlutterPluginRegistrant
 
 class FlutterDependencies: ObservableObject {
-    let flutterEngine = FlutterEngine(name: "flutter-engine")
+    private let flutterEngine = FlutterEngine(name: "flutter-engine")
     
-    init() {
+    private init() {
         flutterEngine.run()
-        // If you added a plugin to Flutter module, you also need to register plugin to flutter engine
         GeneratedPluginRegistrant.register(with: self.flutterEngine)
+    }
+    
+    static let shared = FlutterDependencies()
+}
+
+extension FlutterDependencies {
+    func presentFlutterModule() {
+        guard let windowScene = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive && $0 is UIWindowScene }) as? UIWindowScene,
+              let window = windowScene.windows.first(where: \.isKeyWindow),
+              let rootViewController = window.rootViewController
+        else { return }
+        
+        let flutterViewController = FlutterViewController(
+            engine: flutterEngine,
+            nibName: nil,
+            bundle: nil)
+        flutterViewController.modalPresentationStyle = .overCurrentContext
+        flutterViewController.isViewOpaque = false
+        
+        rootViewController.present(flutterViewController, animated: true)
     }
 }
