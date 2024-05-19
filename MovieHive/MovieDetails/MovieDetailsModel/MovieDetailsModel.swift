@@ -10,6 +10,7 @@ import IdentifiedCollections
 
 @MainActor
 class MovieDetailsModel: ObservableObject {
+    @Published var isLoading = false
     @Published var onError = false
     @Published var genres: [String] = []
     @Published var director: CrewMember?
@@ -18,6 +19,7 @@ class MovieDetailsModel: ObservableObject {
     @Published var cast: [CastMember] = []
     @Published var trailerURLString: String?
     @Published var recommendations: IdentifiedArrayOf<Movie> = []
+    
     
     let movieId: Int
     let title: String
@@ -128,9 +130,20 @@ class MovieDetailsModel: ObservableObject {
         return extractPercentage(from: html)
     }
     
+    private func getDirectorDetails(_ directorId: Int) async -> Person? {
+        return try? await apiClient.getPersonDetails(directorId)
+    }
+    
     func onDirectorButtonTapped() {
         guard let id = director?.id else { return }
-        FlutterDependencies.shared.presentFlutterModule(route: .people(id))
+        Task(priority: .userInitiated) { @MainActor in
+            isLoading = true
+            let details = await getDirectorDetails(id)
+            isLoading = false
+            if details != nil {
+                FlutterDependencies.shared.presentFlutterModule(route: .people(id))
+            }
+        }
     }
     
     func onCastMemberTapped(_ member: CastMember) {

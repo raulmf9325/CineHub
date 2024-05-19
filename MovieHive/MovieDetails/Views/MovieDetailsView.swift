@@ -71,6 +71,7 @@ struct MovieDetailsView: View {
                 PlayTrailerView(urlString: urlString)
             }
         }
+        .threeDotLoadingIndicator(isLoading: model.$isLoading.eraseToAnyPublisher())
     }
     
     enum Sheet: Identifiable {
@@ -187,6 +188,7 @@ struct MovieDetailsView: View {
                     Text(director.name)
                         .font(AppTheme.Typography.helvetica16)
                         .foregroundStyle(.gray)
+                    Image(systemName: "arrow.right.circle.fill")
                 }
                 .foregroundStyle(.white)
             }

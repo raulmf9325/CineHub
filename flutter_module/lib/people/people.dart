@@ -21,6 +21,7 @@ class _PeoplePageState extends State<PeoplePage> {
   String? biography;
   String? birthPlace;
   String? profilePath;
+  bool didFetchPerson = false;
 
   final _apiClient = ApiClientLive.live;
 
@@ -32,12 +33,14 @@ class _PeoplePageState extends State<PeoplePage> {
 
   void getPeople(int id) async {
     final person = await _apiClient.getDetails(id);
+
     setState(() {
       name = person.name;
       birthday = person.birthday;
       biography = person.biography;
       birthPlace = person.birthPlace;
       profilePath = person.profilePath;
+      didFetchPerson = true;
     });
   }
 
@@ -69,8 +72,11 @@ class _PeoplePageState extends State<PeoplePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       ProfileText(name, fontSize: 24),
-                      const StaticText('Born', fontSize: 20).padOnly(top: 10),
-                      ProfileText(_formatBirthday(birthday), fontSize: 18),
+                      if (!didFetchPerson ||
+                          (didFetchPerson && birthday != null)) ...[
+                        const StaticText('Born', fontSize: 20).padOnly(top: 10),
+                        ProfileText(_formatBirthday(birthday), fontSize: 18),
+                      ],
                       const StaticText('Place of Birth', fontSize: 20)
                           .padOnly(top: 10),
                       ProfileText(birthPlace, fontSize: 18),

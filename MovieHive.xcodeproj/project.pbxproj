@@ -37,6 +37,9 @@
 		4FE174662BE9BB33006C950C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE174652BE9BB33006C950C /* Preview Assets.xcassets */; };
 		4FE1748A2BE9BCB3006C950C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE174892BE9BCB3006C950C /* APIClient.swift */; };
 		4FE1748E2BE9C38D006C950C /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1748D2BE9C38C006C950C /* Secrets.swift */; };
+		4FFCFF7B2BFAA40400DB3ADE /* ThreeDotsBouncingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCFF7A2BFAA40400DB3ADE /* ThreeDotsBouncingView.swift */; };
+		4FFCFF7D2BFAA59F00DB3ADE /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCFF7C2BFAA59F00DB3ADE /* ViewExtension.swift */; };
+		4FFCFF7F2BFAA95E00DB3ADE /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCFF7E2BFAA95E00DB3ADE /* Person.swift */; };
 		D667E662F3E68C921C9168AB /* Pods_MovieHive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8888A8A82522B24C47F30B /* Pods_MovieHive.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +76,9 @@
 		4FE174652BE9BB33006C950C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4FE174892BE9BCB3006C950C /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4FE1748D2BE9C38C006C950C /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		4FFCFF7A2BFAA40400DB3ADE /* ThreeDotsBouncingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDotsBouncingView.swift; sourceTree = "<group>"; };
+		4FFCFF7C2BFAA59F00DB3ADE /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		4FFCFF7E2BFAA95E00DB3ADE /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		51034C6FBA0CC94B64E5CDE1 /* Pods-MovieHive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHive.debug.xcconfig"; path = "Target Support Files/Pods-MovieHive/Pods-MovieHive.debug.xcconfig"; sourceTree = "<group>"; };
 		7D8888A8A82522B24C47F30B /* Pods_MovieHive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieHive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -110,6 +116,7 @@
 				4F8696E22BF2BDB900110AE1 /* CrewMember.swift */,
 				4F8696E42BF2BE2200110AE1 /* Credits.swift */,
 				4FAAFCDB2BF4F904007C9025 /* VideosResponse.swift */,
+				4FFCFF7E2BFAA95E00DB3ADE /* Person.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,6 +148,7 @@
 				4F6BB41A2BEB205700F8006C /* ShimmerView.swift */,
 				4F5D16A32BED922700DF3561 /* DropDownView.swift */,
 				4F8EA9992BF16F5F00640270 /* HeaderView.swift */,
+				4FFCFF7A2BFAA40400DB3ADE /* ThreeDotsBouncingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				4F78FFF72BEFF4C40093C385 /* BindingExtension.swift */,
+				4FFCFF7C2BFAA59F00DB3ADE /* ViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -412,6 +421,8 @@
 				4FAAFCDA2BF4F34F007C9025 /* PlayTrailerView.swift in Sources */,
 				4F8696E32BF2BDB900110AE1 /* CrewMember.swift in Sources */,
 				4F6BB4162BEB200B00F8006C /* HomeModel.swift in Sources */,
+				4FFCFF7B2BFAA40400DB3ADE /* ThreeDotsBouncingView.swift in Sources */,
+				4FFCFF7D2BFAA59F00DB3ADE /* ViewExtension.swift in Sources */,
 				4F8696DB2BF2A7E700110AE1 /* StretchyHeaderGeometry.swift in Sources */,
 				4F6BB40D2BEAD98300F8006C /* HomeView.swift in Sources */,
 				4F8E2DE52BF6B80600D69A83 /* MovieHiveApp.swift in Sources */,
@@ -420,6 +431,7 @@
 				4F6BB41B2BEB205700F8006C /* ShimmerView.swift in Sources */,
 				4F8696E12BF2BCB100110AE1 /* CastMember.swift in Sources */,
 				4F5D16A42BED922700DF3561 /* DropDownView.swift in Sources */,
+				4FFCFF7F2BFAA95E00DB3ADE /* Person.swift in Sources */,
 				4F530D652BF6DE4E00212338 /* FlutterEngine.swift in Sources */,
 				4F8696D92BF2A28E00110AE1 /* MovieDetailsView.swift in Sources */,
 				4F6BB4192BEB202D00F8006C /* MovieRow.swift in Sources */,
