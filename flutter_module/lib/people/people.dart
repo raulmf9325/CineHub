@@ -76,7 +76,9 @@ class _PeoplePageState extends State<PeoplePage> {
                       ProfileText(birthPlace, fontSize: 18),
                       const StaticText('Biography', fontSize: 20)
                           .padOnly(top: 10),
-                      ProfileText(biography, fontSize: 18).padOnly(top: 10),
+                      ProfileText(biography, fontSize: 18)
+                          .padOnly(top: 10)
+                          .padOnly(bottom: 20),
                     ],
                   ).padAll(20),
                 )

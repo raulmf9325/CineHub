@@ -34,7 +34,7 @@ struct MovieDetailsView: View {
                 }
                 .padding(.leading, 30)
                 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 12) {
                     GenresText()
                         .transition(.move(edge: .leading))
                         .animation(.easeInOut, value: model.genres)
@@ -43,7 +43,7 @@ struct MovieDetailsView: View {
                         .transition(.move(edge: .leading))
                         .animation(.easeInOut, value: model.director)
                     WatchTrailerViewButton()
-                        .padding(.top, 1)
+                        .padding(.top, 10)
                     OverviewText()
                         .padding(.top)
                     CastView()
@@ -139,11 +139,11 @@ struct MovieDetailsView: View {
         if !model.overview.isEmpty {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Overview")
-                    .font(AppTheme.Typography.helvetica16)
+                    .font(AppTheme.Typography.helvetica16Bold)
                     .bold()
                     .foregroundStyle(.white)
                 Text(model.overview)
-                    .font(AppTheme.Typography.helvetica15)
+                    .font(AppTheme.Typography.helvetica16)
                     .foregroundStyle(.gray)
             }
         }
@@ -156,7 +156,7 @@ struct MovieDetailsView: View {
                 Text("Genres:")
                     .font(AppTheme.Typography.helvetica16Bold)
                 Text(model.genres.joined(separator: ", "))
-                    .font(AppTheme.Typography.helvetica15)
+                    .font(AppTheme.Typography.helvetica16)
                     .foregroundStyle(.gray)
             }
             .foregroundStyle(.white)
@@ -170,7 +170,7 @@ struct MovieDetailsView: View {
                 Text("Release date:")
                     .font(AppTheme.Typography.helvetica16Bold)
                 Text(formatDate(date))
-                    .font(AppTheme.Typography.helvetica15)
+                    .font(AppTheme.Typography.helvetica16)
                     .foregroundStyle(.gray)
             }
             .foregroundStyle(.white)
@@ -185,7 +185,7 @@ struct MovieDetailsView: View {
                     Text("Director:")
                         .font(AppTheme.Typography.helvetica16Bold)
                     Text(director.name)
-                        .font(AppTheme.Typography.helvetica15)
+                        .font(AppTheme.Typography.helvetica16)
                         .foregroundStyle(.gray)
                 }
                 .foregroundStyle(.white)
@@ -242,25 +242,31 @@ struct MovieDetailsView: View {
     
     func CastView() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 30) {
+            LazyHStack(alignment: .top, spacing: 30) {
                 ForEach(model.cast) { castMember in
-                    VStack(alignment: .center) {
-                        CastMemberImage(castMember.profile_path)
-                        
-                        Text(castMember.name)
-                            .font(AppTheme.Typography.helvetica12)
-                            .foregroundStyle(.gray)
-                            .padding(.top, 1)
-                            .frame(width: 100)
-                        
-                        Text("as")
-                            .font(AppTheme.Typography.helvetica12)
-                            .foregroundStyle(.gray)
-                        
-                        Text(castMember.character)
-                            .font(AppTheme.Typography.helvetica12)
-                            .foregroundStyle(.white)
-                            .frame(width: 100)
+                    Button(action: {
+                        model.onCastMemberTapped(castMember)
+                    }) {
+                        VStack(alignment: .center) {
+                            CastMemberImage(castMember.profile_path)
+                            
+                            Text(castMember.name)
+                                .font(AppTheme.Typography.helvetica12)
+                                .foregroundStyle(.gray)
+                                .padding(.top, 1)
+                                .frame(width: 100)
+                            
+                            if !castMember.character.isEmpty {
+                                Text("as")
+                                    .font(AppTheme.Typography.helvetica12)
+                                    .foregroundStyle(.gray)
+                                
+                                Text(castMember.character)
+                                    .font(AppTheme.Typography.helvetica12)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 100)
+                            }
+                        }
                     }
                 }
             }
@@ -328,7 +334,7 @@ struct MovieDetailsView: View {
         } placeholder: {
             ShimmerView()
         }
-        .frame(width: 90, height: 110)
+        .frame(width: 110, height: 160)
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
         

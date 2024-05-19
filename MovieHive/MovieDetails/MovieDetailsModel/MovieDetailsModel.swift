@@ -132,6 +132,11 @@ class MovieDetailsModel: ObservableObject {
         guard let id = director?.id else { return }
         FlutterDependencies.shared.presentFlutterModule(route: .people(id))
     }
+    
+    func onCastMemberTapped(_ member: CastMember) {
+        let id = member.id
+        FlutterDependencies.shared.presentFlutterModule(route: .people(id))
+    }
 }
 
 
