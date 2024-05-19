@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_module/api/api_client.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_module/people/widgets/shimmer.dart';
 import 'package:flutter_module/widget_extensions/widget_extensions.dart';
+import 'package:intl/intl.dart';
 
 class PeoplePage extends StatefulWidget {
   const PeoplePage({super.key, required this.id});
@@ -70,7 +70,7 @@ class _PeoplePageState extends State<PeoplePage> {
                     children: <Widget>[
                       ProfileText(name, fontSize: 24),
                       const StaticText('Born', fontSize: 20).padOnly(top: 10),
-                      ProfileText(birthday, fontSize: 18),
+                      ProfileText(_formatBirthday(birthday), fontSize: 18),
                       const StaticText('Place of Birth', fontSize: 20)
                           .padOnly(top: 10),
                       ProfileText(birthPlace, fontSize: 18),
@@ -87,6 +87,15 @@ class _PeoplePageState extends State<PeoplePage> {
         ]),
       ),
     );
+  }
+
+  String? _formatBirthday(String? birthday) {
+    if (birthday != null) {
+      DateTime dateTime = DateTime.parse(birthday);
+      return DateFormat('MMMM d, yyyy').format(dateTime);
+    } else {
+      return null;
+    }
   }
 }
 
@@ -134,8 +143,8 @@ class ProfileText extends StatelessWidget {
             color: Colors.grey[350]),
       );
     } else {
-      return const ShimmerView.rectangular(height: 40)
-          .padSymmetric(vertical: 10, horizontal: 30);
+      return const ShimmerView.rectangular(height: 50)
+          .padSymmetric(vertical: 10, horizontal: 0);
     }
   }
 }
