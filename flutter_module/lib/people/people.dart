@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_module/api/api_client.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_module/people/widgets/shimmer.dart';
@@ -45,15 +46,40 @@ class _PeoplePageState extends State<PeoplePage> {
     return Scaffold(
       body: Center(
         child: Stack(children: [
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ProfileImage(profilePath: profilePath),
-                ProfileText(name, fontSize: 20),
-                ProfileText(birthday, fontSize: 18),
-                ProfileText(birthPlace, fontSize: 18),
-                ProfileText(biography, fontSize: 15),
+          Container(
+            color: Colors.black,
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverAppBar(
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Colors.black,
+                  expandedHeight: 300,
+                  stretch: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                    stretchModes: const [StretchMode.zoomBackground],
+                    background: ProfileImage(
+                      profilePath: profilePath,
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ProfileText(name, fontSize: 24),
+                      const StaticText('Born', fontSize: 20).padOnly(top: 10),
+                      ProfileText(birthday, fontSize: 18),
+                      const StaticText('Place of Birth', fontSize: 20)
+                          .padOnly(top: 10),
+                      ProfileText(birthPlace, fontSize: 18),
+                      const StaticText('Biography', fontSize: 20)
+                          .padOnly(top: 10),
+                      ProfileText(biography, fontSize: 18).padOnly(top: 10),
+                    ],
+                  ).padAll(20),
+                )
               ],
             ),
           ),
@@ -77,35 +103,59 @@ class ProfileImage extends StatelessWidget {
     if (profilePath != null) {
       return CachedNetworkImage(
         imageUrl: 'https://image.tmdb.org/t/p/w1280/$profilePath',
-        progressIndicatorBuilder: (context, url, downloadProgress) =>
-            CircularProgressIndicator(value: downloadProgress.progress),
+        progressIndicatorBuilder: (context, url, progress) =>
+            const ShimmerView.rectangular(height: 300),
         errorWidget: (context, url, error) => const Icon(Icons.error),
+        fit: BoxFit.fitWidth,
       );
     } else {
-      return const CircularProgressIndicator();
+      return const ShimmerView.rectangular(height: 300);
     }
   }
 }
 
 class ProfileText extends StatelessWidget {
-  const ProfileText(this.text, {super.key, required this.fontSize});
+  const ProfileText(this.text,
+      {super.key, required this.fontSize, this.fontWeight});
 
   final String? text;
   final double fontSize;
+  final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
     if (text != null) {
-      // return Text(
-      //   text!,
-      //   style: TextStyle(fontSize: fontSize),
-      // );
-      return const ShimmerView.rectangular(height: 30)
-          .padSymmetric(vertical: 10, horizontal: 30);
+      return Text(
+        text!,
+        style: TextStyle(
+            fontFamily: 'HelveticaNeue',
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: Colors.grey[350]),
+      );
     } else {
-      return const ShimmerView.rectangular(height: 30)
+      return const ShimmerView.rectangular(height: 40)
           .padSymmetric(vertical: 10, horizontal: 30);
     }
+  }
+}
+
+class StaticText extends StatelessWidget {
+  const StaticText(this.text, {super.key, required this.fontSize});
+
+  final String text;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+          fontFamily: 'HelveticaNeue',
+          fontSize: fontSize,
+          fontWeight: FontWeight.bold,
+          color: Colors.white),
+    );
   }
 }
 
