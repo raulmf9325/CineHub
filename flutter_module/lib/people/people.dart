@@ -77,9 +77,12 @@ class _PeoplePageState extends State<PeoplePage> {
                         const StaticText('Born', fontSize: 20).padOnly(top: 10),
                         ProfileText(_formatBirthday(birthday), fontSize: 18),
                       ],
-                      const StaticText('Place of Birth', fontSize: 20)
-                          .padOnly(top: 10),
-                      ProfileText(birthPlace, fontSize: 18),
+                      if (!didFetchPerson ||
+                          didFetchPerson && birthPlace != null) ...[
+                        const StaticText('Place of Birth', fontSize: 20)
+                            .padOnly(top: 10),
+                        ProfileText(birthPlace, fontSize: 18),
+                      ],
                       const StaticText('Biography', fontSize: 20)
                           .padOnly(top: 10),
                       ProfileText(biography, fontSize: 18)

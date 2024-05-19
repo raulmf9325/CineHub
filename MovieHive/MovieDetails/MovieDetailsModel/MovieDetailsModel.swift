@@ -130,25 +130,30 @@ class MovieDetailsModel: ObservableObject {
         return extractPercentage(from: html)
     }
     
-    private func getDirectorDetails(_ directorId: Int) async -> Person? {
-        return try? await apiClient.getPersonDetails(directorId)
+    private func getPersonDetails(_ directorId: Int) async -> Person? {
+        let person = try? await apiClient.getPersonDetails(directorId)
+        if person?.biography.isEmpty == true { return nil }
+        return person
     }
     
-    func onDirectorButtonTapped() {
-        guard let id = director?.id else { return }
+    private func onPersonButtonTapped(_ personId: Int) {
         Task(priority: .userInitiated) { @MainActor in
             isLoading = true
-            let details = await getDirectorDetails(id)
+            let details = await getPersonDetails(personId)
             isLoading = false
             if details != nil {
-                FlutterDependencies.shared.presentFlutterModule(route: .people(id))
+                FlutterDependencies.shared.presentFlutterModule(route: .people(personId))
             }
         }
     }
     
+    func onDirectorButtonTapped() {
+        guard let id = director?.id else { return }
+        onPersonButtonTapped(id)
+    }
+    
     func onCastMemberTapped(_ member: CastMember) {
-        let id = member.id
-        FlutterDependencies.shared.presentFlutterModule(route: .people(id))
+        onPersonButtonTapped(member.id)
     }
 }
 
