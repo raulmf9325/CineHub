@@ -8,6 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+
 struct MovieDetailsView: View {
     @ObservedObject var model: MovieDetailsModel
     @Environment(\.dismiss) var dismiss
@@ -63,6 +64,8 @@ struct MovieDetailsView: View {
             }
             .padding(.horizontal, 25)
             .toolbar(.hidden)
+            
+            AlertView()
         }
         .background(Color.black.ignoresSafeArea())
         .fullScreenCover(item: $isShowingSheet) { sheet in
@@ -301,6 +304,25 @@ struct MovieDetailsView: View {
                                     .padding(.bottom)
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+    
+    func AlertView() -> some View {
+        VStack {
+            SlideDownAlert(message: "No available details for selected person")
+            Spacer()
+        }
+        .ignoresSafeArea()
+        .offset(x: 0, y: model.noDetailsForSelectedPerson ? 10 : -200)
+        .animation(.easeInOut, value: model.noDetailsForSelectedPerson)
+        .onReceive(model.$noDetailsForSelectedPerson) { showAlert in
+            if showAlert {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    withAnimation {
+                        model.noDetailsForSelectedPerson = false
                     }
                 }
             }

@@ -19,6 +19,7 @@ class MovieDetailsModel: ObservableObject {
     @Published var cast: [CastMember] = []
     @Published var trailerURLString: String?
     @Published var recommendations: IdentifiedArrayOf<Movie> = []
+    @Published var noDetailsForSelectedPerson = false
     
     
     let movieId: Int
@@ -141,8 +142,11 @@ class MovieDetailsModel: ObservableObject {
             isLoading = true
             let details = await getPersonDetails(personId)
             isLoading = false
+            
             if details != nil {
                 FlutterDependencies.shared.presentFlutterModule(route: .people(personId))
+            } else {
+                noDetailsForSelectedPerson = true
             }
         }
     }
