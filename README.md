@@ -11,3 +11,5 @@ Movie Hive is a native iOS / iPadOS app that integrates a Flutter module, provid
 * Web scraping for fetching Rotten Tomatotes scores.
 * Method Channel communication between native iOS and Flutter module.
 * MVVM architecture with SwiftUI Observable Object.
+
+![](preview.gif)
