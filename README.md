@@ -12,4 +12,6 @@ Movie Hive is a native iOS / iPadOS app that integrates a Flutter module, provid
 * Method Channel communication between native iOS and Flutter module.
 * MVVM architecture with SwiftUI Observable Object.
 
+  
+
 ![](preview.gif)
